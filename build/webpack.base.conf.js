@@ -6,7 +6,7 @@ var vueLoaderConfig = require('./vue-loader.conf')
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
-
+console.log(vueLoaderConfig)
 module.exports = {
   entry: {
     app: './src/main.js'
@@ -44,6 +44,11 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        include: [resolve('src'), resolve('test')]
+      },
+      {
+        test: /\.less$/,
+        loader: 'less-loader',
         include: [resolve('src'), resolve('test')]
       },
       {
