@@ -1,14 +1,10 @@
 <template>
-  <div class="my-wrap">
-    <div class="header">
-      个人中心哟
-    </div>
+  <div class="trade-wrap">
+    交易明细
   </div>
 </template>
 
 <script>
-import { Cell } from 'vux';
-
 export default {
   data() {
     return {
@@ -18,17 +14,12 @@ export default {
   ready() {},
   attached() {},
   methods: {},
-  components: {
-    Cell,
-  },
+  components: {}
 };
 </script>
 
 <style lang="less">
-.my-wrap{
-  .header{
-    width: 10rem;
-    color: #ccc;
-  }
+.trade-wrap{
+
 }
 </style>

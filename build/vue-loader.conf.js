@@ -8,5 +8,13 @@ module.exports = {
       ? config.build.productionSourceMap
       : config.dev.cssSourceMap,
     extract: isProduction
-  })
+  }),
+  postcss: [
+    require('autoprefixer')({
+      browsers: ['iOS >= 7', 'Android >= 4.1']
+    }),
+    require('postcss-plugin-for-vue-px2rem-ignore1px')({
+        remUnit: 32
+    })
+  ]
 }
