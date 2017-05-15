@@ -124,9 +124,12 @@ export default {
   }
   .group .iconfont{
     position: relative;
-    top: -1px;
+    top: -2rpx;
     margin-right: 4rpx;
     color: #9B9B9B;
+  }
+  .weui-cells{
+    /* line-height: 1.1; */
   }
   .vux-label{
     font-size: 16rpx;
@@ -140,8 +143,8 @@ export default {
   .tel{
     color: @blue;
   }
-  .weui_cell{
-    padding: 10rpx 15rpx;
+  .weui-cell{
+    padding: 10rpx 15px;
   }
 }
 </style>

@@ -8,18 +8,21 @@
     </div>
     <div>
       <group v-if="type === 'seller'">
-        <x-input title="所在城市"></x-input>
+        <div class="input-cell">
+
+        </div>
+        <!-- <x-input title="所在城市"></x-input>
         <x-input title="门店名称"></x-input>
         <x-input title="门店地址"></x-input>
         <x-input title="联系人姓名"></x-input>
-        <x-input title="联系人电话"></x-input>
+        <x-input title="联系人电话"></x-input> -->
       </group>
       <group v-if="type === 'agent'">
-        <x-input title="姓名"></x-input>
+        <!-- <x-input title="姓名"></x-input>
         <x-input title="联系电话"></x-input>
         <x-input title="邮箱"></x-input>
         <x-input title="城市/区域"></x-input>
-        <x-input title="我的资源优势"></x-input>
+        <x-input title="我的资源优势"></x-input> -->
       </group>
     </div>
   </div>
@@ -69,6 +72,17 @@
       .icon-3{
         display: block;
       }
+    }
+    .input-cell{}
+    /*
+     vux改造样式
+     */
+    .weui-cell{
+      padding: 10rpx 15px;
+    }
+    .weui-label{
+      font-size: 14rpx;
+      width: 10em;
     }
   }
 </style>
