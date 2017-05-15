@@ -20,6 +20,7 @@
     "vue-awesome": "^2.3.1",
     "vue-router": "^2.3.1",
     "vuex": "^2.3.1",
+    "vuex-router-sync": "^4.1.2",
     "vux": "^2.2.1"
   },
   "devDependencies": {

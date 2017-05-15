@@ -2,12 +2,16 @@
   <div class="my-wrap">
     <div class="header">
       <img :src="img" class="avatar">
-      <p class="user-name">BY街电客户</p>
+      <p class="user-name">啦啦啦</p>
     </div>
     <div class="remainder">余额 <span class="money">&yen;299.00</span></div>
     <div class="ctrl-money">
-      <div class="item deposit"><i class="iconfont icon-tixian"></i>提现</div>
-      <div class="item recharge"><i class="iconfont icon-chongzhi1"></i>充值</div>
+      <router-link :to="{name: 'deposit'}" class="item deposit" tag="div">
+        <i class="iconfont icon-tixian"></i>提现
+      </router-link>
+      <router-link :to="{name: 'recharge'}" class="item recharge" tag="div">
+        <i class="iconfont icon-chongzhi1"></i>充值
+      </router-link>
     </div>
 
     <group class="group">
@@ -46,10 +50,6 @@ export default {
       img: 'https://ss1.baidu.com/70cFfyinKgQFm2e88IuM_a/forum/pic/item/730e0cf3d7ca7bcb63873d0db4096b63f624a810.jpg',
     };
   },
-  computed: {},
-  ready() {},
-  attached() {},
-  methods: {},
   components: {
     Cell,
     Group,
@@ -84,7 +84,7 @@ export default {
   }
   .user-name{
     position: absolute;
-    bottom: 10px;
+    bottom: 0;
     width: 100%;
     text-align: center;
     font-weight: bold;
@@ -102,12 +102,13 @@ export default {
     }
   }
   .ctrl-money{
-    margin-top: 2rpx;
+    margin-top: 1rpx;
     display: flex;
     padding: 8rpx 0;
     background-color: #fff;
     font-size: 16rpx;
     .item{
+      display: block;
       flex: 1;
       text-align: center;
       height: 32rpx;
@@ -138,6 +139,9 @@ export default {
   }
   .tel{
     color: @blue;
+  }
+  .weui_cell{
+    padding: 10rpx 15rpx;
   }
 }
 </style>

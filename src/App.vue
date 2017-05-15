@@ -1,12 +1,30 @@
 <template>
   <div id="app">
-    <router-view class="router-view"></router-view>
+    <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
+       <router-view class="router-view"></router-view>
+     </transition>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   name: 'app',
+  data() {
+    return {
+      // direction: 'forward'
+    }
+  },
+  computed: {
+    ...mapState({
+      direction: state => state.vux.direction
+    })
+  },
+  mounted() {
+    this.$nextTick(() => {
+    })
+  }
 };
 </script>
 
@@ -20,14 +38,17 @@ html,body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.router-view{
+  width: 100%;
+}
 .vux-pop-out-enter-active,
 .vux-pop-out-leave-active,
 .vux-pop-in-enter-active,
 .vux-pop-in-leave-active {
   will-change: transform;
-  transition: all 500ms;
+  transition: all 300ms;
   height: 100%;
-  top: 46px;
+  top: 0;
   position: absolute;
   backface-visibility: hidden;
   perspective: 1000;

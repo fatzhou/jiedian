@@ -1,58 +1,128 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
+import store from '@/store';
 
-import Borrow from '@/containers/borrow.vue';
-import Coupon from '@/containers/coupon.vue';
-import Deposit from '@/containers/deposit.vue';
-import My from '@/containers/my.vue';
-import Recharge from '@/containers/recharge.vue';
-import Recommend from '@/containers/recommend.vue';
-import Return from '@/containers/return.vue';
-import Trade from '@/containers/trade.vue';
+Vue.use(VueRouter);
 
-Vue.use(Router);
-
-export default new Router({
+const router = new VueRouter({
   routes: [
+    {
+      path: '/business',
+      name: 'business',
+      component: (r) => {
+        require(['@/containers/business/index.vue'], r)
+      }
+    },
+    {
+      path: '/business/:type',
+      name: 'businessForApply',
+      component: (r) => {
+        require(['@/containers/business/apply.vue'], r)
+      }
+    },
+    {
+      path: '/shop/detail',
+      name: 'shopDetail',
+      component: (r) => {
+        require(['@/containers/shop/detail.vue'], r)
+      }
+    },
+    {
+      path: '/shop/list',
+      name: 'shopList',
+      component: (r) => {
+        require(['@/containers/shop/list.vue'], r)
+      }
+    },
     {
       path:'/borrow',
       name: 'borrow',
-      component: Borrow
+      component: (r) => {
+        require(['@/containers/borrow.vue'], r)
+      }
     },
     {
       path:'/coupon',
       name: 'coupon',
-      component: Coupon
+      component: (r) => {
+        require(['@/containers/coupon.vue'], r)
+      }
     },
     {
       path:'/deposit',
       name: 'deposit',
-      component: Deposit
+      component: (r) => {
+        require(['@/containers/deposit.vue'], r)
+      }
     },
     {
       path: '/my',
       name: 'my',
-      component: My,
+      component: (r) => {
+        require(['@/containers/my.vue'], r)
+      }
     },
     {
       path:'/recharge',
       name: 'recharge',
-      component: Recharge
+      component: (r) => {
+        require(['@/containers/recharge.vue'], r)
+      }
     },
     {
       path:'/recommend',
       name: 'recommend',
-      component: Recommend
+      component: (r) => {
+        require(['@/containers/recommend.vue'], r)
+      }
     },
     {
       path: '/return',
       name: 'return',
-      component: Return
+      component: (r) => {
+        require(['@/containers/return.vue'], r)
+      }
     },
     {
       path: '/my/trade',
       name: 'trade',
-      component: Trade
+      component: (r) => {
+        require(['@/containers/trade.vue'], r)
+      }
     }
-  ],
+  ]
 });
+
+const history = window.sessionStorage
+history.clear()
+let historyCount = history.getItem('count') * 1 || 0
+history.setItem('/', 0)
+
+router.beforeEach(function (to, from, next) {
+  store.commit('updateLoadingStatus', {isLoading: true})
+
+  const toIndex = history.getItem(to.path)
+  const fromIndex = history.getItem(from.path)
+
+  if (toIndex) {
+    if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
+      store.commit('updateDirection', {direction: 'forward'})
+    } else {
+      store.commit('updateDirection', {direction: 'reverse'})
+    }
+  } else {
+    ++historyCount
+    history.setItem('count', historyCount)
+    to.path !== '/' && history.setItem(to.path, historyCount)
+    store.commit('updateDirection', {direction: 'forward'})
+  }
+
+  if (/\/http/.test(to.path)) {
+    let url = to.path.split('http')[1]
+    window.location.href = `http${url}`
+  } else {
+    next()
+  }
+})
+
+export default router
