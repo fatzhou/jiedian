@@ -83,7 +83,11 @@
       },
       submit() {
         const type = this.type
-        this.$vux.toast.show('loading')
+        if (this.canSubmit) {
+          this.$router.push({
+            name: 'businessForReply'
+          })
+        }
       }
     }
   }

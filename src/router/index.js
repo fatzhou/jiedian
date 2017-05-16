@@ -14,10 +14,17 @@ const router = new VueRouter({
       }
     },
     {
-      path: '/business/:type',
+      path: '/business/apply/:type',
       name: 'businessForApply',
       component: (r) => {
         require(['@/containers/business/apply.vue'], r)
+      }
+    },
+    {
+      path: '/business/reply',
+      name: 'businessForReply',
+      component: (r) => {
+        require(['@/containers/business/reply.vue'], r)
       }
     },
     {
@@ -99,7 +106,7 @@ let historyCount = history.getItem('count') * 1 || 0
 history.setItem('/', 0)
 
 router.beforeEach(function (to, from, next) {
-  store.commit('updateLoadingStatus', {isLoading: true})
+  // store.commit('updateLoadingStatus', {isLoading: true})
 
   const toIndex = history.getItem(to.path)
   const fromIndex = history.getItem(from.path)
@@ -123,6 +130,14 @@ router.beforeEach(function (to, from, next) {
   } else {
     next()
   }
+})
+
+router.afterEach(function (to) {
+  // store.commit('updateLoadingStatus', {isLoading: false})
+  // if (process.env.NODE_ENV === 'production') {
+  //   ga && ga('set', 'page', to.fullPath)
+  //   ga && ga('send', 'pageview')
+  // }
 })
 
 export default router

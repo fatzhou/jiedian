@@ -3,14 +3,19 @@
     <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
        <router-view class="router-view"></router-view>
      </transition>
+     <spinner type="android" v-if="isLoading"></spinner>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { Spinner } from 'vux'
 
 export default {
   name: 'app',
+  components: {
+    Spinner
+  },
   data() {
     return {
       // direction: 'forward'
@@ -18,7 +23,8 @@ export default {
   },
   computed: {
     ...mapState({
-      direction: state => state.vux.direction
+      direction: state => state.vux.direction,
+      isLoading: state => state.vux.isLoading
     })
   },
   mounted() {
