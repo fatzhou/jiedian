@@ -37,7 +37,7 @@ export default {
 <style lang="less">
 .input-cell{
   display: flex;
-  padding: 8rpx 15px 8px 0; 
+  padding: 10rpx 15px 10px 0; 
   font-size: 14rpx;
   border-bottom: 1rpx solid #E8E8E8;
   label{

@@ -43,7 +43,7 @@
     data() {
       return {
         type: '',
-        canClick: false,
+        //商家
         seller: {
           city: '',
           shopName: '',
@@ -51,6 +51,7 @@
           concatName: '',
           concatMobile: ''
         },
+        //代理商
         agent: {
           city:'',
           concatName: '',
@@ -72,10 +73,6 @@
     },
     created() {
       this.type = this.$route.params.type
-    },
-    mounted() {
-      const type = this.type
-      const params = this[type]
     },
     methods: {
       syncAdvantage(val) {
