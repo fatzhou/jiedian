@@ -5,18 +5,17 @@
         <i class="iconfont icon-shangjia"></i>
         <i class="iconfont icon-3"></i>
       </div>
+      <p class="msg">{{type === 'seller' ? '商家' : '代理商'}}合作申请</p>
     </div>
-    <div>
-      <group v-if="type === 'seller'">
-        <div class="input-cell">
-
-        </div>
-        <!-- <x-input title="所在城市"></x-input>
-        <x-input title="门店名称"></x-input>
-        <x-input title="门店地址"></x-input>
-        <x-input title="联系人姓名"></x-input>
-        <x-input title="联系人电话"></x-input> -->
-      </group>
+    <div class="content">
+      <div v-if="type === 'seller'" class="input-group">
+        <input-cell title="所在城市" placeholder="请输入城市" :value="city"></input-cell>
+        <input-cell title="门店名称" placeholder="请输入门店名称"></input-cell>
+        <input-cell title="门店地址" placeholder="请输入门店地址"></input-cell>
+        <input-cell title="联系人姓名" placeholder="请输入联系人姓名"></input-cell>
+        <input-cell title="联系人电话" placeholder="请输入联系人电话"></input-cell>
+        <x-input :value="test"></x-input>
+      </div>
       <group v-if="type === 'agent'">
         <!-- <x-input title="姓名"></x-input>
         <x-input title="联系电话"></x-input>
@@ -28,15 +27,20 @@
   </div>
 </template>
 <script>
+  import { InputCell } from '@/components';
   import { Group, XInput } from 'vux';
+
   export default {
     components: {
       Group,
+      InputCell,
       XInput
     },
     data() {
       return {
-        type: ''
+        type: '',
+        city: '深圳',
+        test: 'ca'
       }
     },
     mounted() {
@@ -48,6 +52,13 @@
 </script>
 <style media="screen" lang="less">
   .business-apply-wrap{
+    .header{
+      .msg{
+        margin-top: 16px;
+        text-align: center;
+        font-size: 16rpx;
+      }
+    }
     .big-sign{
       width: 72px;
       height: 72px;
@@ -73,7 +84,16 @@
         display: block;
       }
     }
-    .input-cell{}
+    .content{
+      margin-top: 16rpx;
+      border: solid #E8E8E8;
+      border-width: 1rpx 0 1px 0; 
+      background-color: #fff;
+    }
+    .input-group{
+      width: 100%;
+    }
+    
     /*
      vux改造样式
      */
