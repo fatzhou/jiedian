@@ -41,18 +41,20 @@ export default {
   font-size: 14rpx;
   border-bottom: 1rpx solid #E8E8E8;
   label{
-    display: block;
+    display: inline-block;
     width: 8em;
     color: #757575;
+    height: 22rpx;
+    line-height: 22rpx;
   }
   .input-section{
     width: 100%;
   }
   input{
-    display: block;
+    display: inline-block;
     width: 100%;
-    height: 100%;
-    line-height: 100%;
+    height: 22rpx;
+    line-height: 22rpx;
     border: 0;
   }
 }
