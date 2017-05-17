@@ -107,6 +107,7 @@ export default {
     padding: 8rpx 0;
     background-color: #fff;
     font-size: 16rpx;
+    border-bottom: 1rpx solid #f4f4f4;
     .item{
       display: block;
       flex: 1;
@@ -128,8 +129,11 @@ export default {
     margin-right: 4rpx;
     color: #9B9B9B;
   }
-  .weui-cells{
-    /* line-height: 1.1; */
+  /*
+    vux
+  */
+  .vux-no-group-title{
+    margin-top: 8rpx;
   }
   .vux-label{
     font-size: 16rpx;

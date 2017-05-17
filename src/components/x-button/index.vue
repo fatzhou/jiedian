@@ -1,0 +1,35 @@
+<template>
+  <div class="jiedian-button" :class="{'jiedian-button-active': active}" @click="click">{{text}}</div>
+</template>
+<script>
+export default {
+  props:{
+    text: String,
+    active: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    click() {
+      this.$emit('on-click')
+    }
+  }
+}
+</script>
+<style lang="less">
+.jiedian-button{
+  margin: 16px auto 0;
+  width: 288px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  border-radius: 4rpx;
+  background-color: #0085ee;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16rpx;
+}
+.jiedian-button-active{
+  color: rgba(255, 255, 255, 1);
+}
+</style>

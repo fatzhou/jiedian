@@ -82,7 +82,10 @@
         const type = this.type
         if (this.canSubmit) {
           this.$router.push({
-            name: 'businessForReply'
+            name: 'commonReply',
+            params: {
+              type: 'business'
+            }
           })
         }
       }

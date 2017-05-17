@@ -28,6 +28,13 @@ const router = new VueRouter({
       }
     },
     {
+      path: '/reply/:type',
+      name: 'commonReply',
+      component: (r) => {
+        require(['@/containers/common/msg.vue'], r)
+      }
+    },
+    {
       path: '/shop/detail',
       name: 'shopDetail',
       component: (r) => {
