@@ -3,10 +3,27 @@
     <div class="header">
       充值&yen;600 提现&yen;300 
     </div>
+    <scroller
+      lock-x
+      scrollbar-y
+      use-pullup
+      use-pulldown
+      @on-pullup-loading="loadMore" 
+      @on-pulldown-loading="refresh" 
+      v-model="status" 
+      ref="scroller"
+    >
+      <div>
+        <item :data="data" v-for="data in list"></item>
+      </div>
+    </scroller>
   </div>
 </template>
 
 <script>
+import { Scroller } from 'vux'
+import Item from './sub/trade.list'
+
 export default {
   data() {
     return {
@@ -16,7 +33,10 @@ export default {
   ready() {},
   attached() {},
   methods: {},
-  components: {}
+  components: {
+    ListItem,
+    Scroller
+  }
 };
 </script>
 

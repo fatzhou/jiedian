@@ -101,7 +101,7 @@ const router = new VueRouter({
       path: '/my/trade',
       name: 'trade',
       component: (r) => {
-        require(['@/containers/trade.list.vue'], r)
+        require(['@/containers/trade'], r)
       }
     }
   ]
