@@ -1,10 +1,10 @@
 <template>
   <div class="my-wrap">
     <div class="header">
-      <img :src="img" class="avatar">
-      <p class="user-name">啦啦啦</p>
+      <img :src="user.headimgurl" class="avatar">
+      <p class="user-name">{{user.username}}</p>
     </div>
-    <div class="remainder">余额 <span class="money">&yen;299.00</span></div>
+    <div class="remainder">余额 <span class="money">&yen;{{user.amount}}</span></div>
     <div class="ctrl-money">
       <router-link :to="{name: 'deposit'}" class="item deposit" tag="div">
         <i class="iconfont icon-tixian"></i>提现
@@ -42,13 +42,28 @@
 
 <script>
 import { Cell, Group, Alert } from 'vux';
+import axios from 'axios'
 
 export default {
   data() {
     return {
       show: true,
+      user: {},
       img: 'https://ss1.baidu.com/70cFfyinKgQFm2e88IuM_a/forum/pic/item/730e0cf3d7ca7bcb63873d0db4096b63f624a810.jpg',
     };
+  },
+  created() {
+    this.getUserInfo()
+  },
+  methods: {
+    getUserInfo() {
+      axios.get('http://byjiedian.com/index.php?m=byjie&a=info').then((res) => {
+        res = res.data
+        if (res.errcode === 0) {
+          this.user = res.data
+        }
+      })
+    }
   },
   components: {
     Cell,

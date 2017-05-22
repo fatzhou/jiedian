@@ -3,38 +3,29 @@
     <div class="header">
       充值&yen;600 提现&yen;300 
     </div>
-    <scroller
-      lock-x
-      scrollbar-y
-      use-pullup
-      use-pulldown
-      @on-pullup-loading="loadMore" 
-      @on-pulldown-loading="refresh" 
-      v-model="status" 
-      ref="scroller"
-    >
-      <div>
-        <item :data="data" v-for="data in list"></item>
-      </div>
-    </scroller>
+    <div class="content">
+      <item></item>
+    </div>
   </div>
 </template>
 
 <script>
 import { Scroller } from 'vux'
-import Item from './sub/trade.list'
+import Item from './sub/item'
 
 export default {
   data() {
     return {
+      list: []
     };
   },
   computed: {},
-  ready() {},
-  attached() {},
+  created() {
+    const a = Array.from(100)
+  },
   methods: {},
   components: {
-    ListItem,
+    Item,
     Scroller
   }
 };
