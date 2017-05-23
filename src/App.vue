@@ -27,8 +27,17 @@ export default {
       isLoading: state => state.vux.isLoading
     })
   },
+  created() {
+    
+  },
   mounted() {
     this.$nextTick(() => {
+      this.getUserInfo()
+    })
+  },
+  methods: {
+    ...mapActions({
+      getUserInfo: 'getUserInfo'
     })
   }
 };

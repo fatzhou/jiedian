@@ -98,10 +98,17 @@ const router = new VueRouter({
       }
     },
     {
-      path: '/my/trade',
-      name: 'trade',
+      path: '/my/trade/list',
+      name: 'tradeList',
       component: (r) => {
-        require(['@/containers/trade'], r)
+        require(['@/containers/trade/trade.list'], r)
+      }
+    },
+    {
+      path: '/my/borrow/list',
+      name: 'borrowList',
+      component: (r) => {
+        require(['@/containers/trade/borrow.list'], r)
       }
     }
   ]

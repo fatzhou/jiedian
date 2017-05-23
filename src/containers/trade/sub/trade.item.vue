@@ -5,7 +5,7 @@
       <p class="order-code">订单号：{{data.code}}</p>
       <p class="order-time">{{data.time}}</p>
     </div>
-    <div class="amount">{{data.amount}}</div>
+    <div class="amount">{{data.type === 1 ? '+' : '-'}}{{data.amount}}</div>
   </div>
 </template>
 <script>
@@ -32,6 +32,8 @@ export default {
   padding: 16rpx 0;
   box-sizing: border-box;
   display: flex;
+  border: solid #e6e6e6;
+  border-width: 1rpx 0 1px 0;
   .section{
     width: 75rpx;
     text-align: center;

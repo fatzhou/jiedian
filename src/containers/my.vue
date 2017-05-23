@@ -15,10 +15,10 @@
     </div>
 
     <group class="group">
-      <cell title="交易明细" is-link link="/my/trade">
+      <cell title="交易明细" is-link link="/my/trade/list">
         <i class="iconfont icon-jiaoyimingxi" slot="icon"></i>
       </cell>
-      <cell title="租借记录" is-link>
+      <cell title="租借记录" is-link link="/my/borrow/list">
         <i class="iconfont icon-dingdangdaijiekuanjilu" slot="icon"></i>
       </cell>
     </group>
@@ -41,29 +41,23 @@
 </template>
 
 <script>
-import { Cell, Group, Alert } from 'vux';
-import axios from 'axios'
+import { Cell, Group, Alert } from 'vux'
+import { mapState } from 'vuex'
 
 export default {
   data() {
     return {
       show: true,
-      user: {},
-      img: 'https://ss1.baidu.com/70cFfyinKgQFm2e88IuM_a/forum/pic/item/730e0cf3d7ca7bcb63873d0db4096b63f624a810.jpg',
     };
   },
+  computed: {
+    ...mapState({
+      user: state => state.user.userInfo
+    })
+  },
   created() {
-    this.getUserInfo()
   },
   methods: {
-    getUserInfo() {
-      axios.get('http://byjiedian.com/index.php?m=byjie&a=info').then((res) => {
-        res = res.data
-        if (res.errcode === 0) {
-          this.user = res.data
-        }
-      })
-    }
   },
   components: {
     Cell,
