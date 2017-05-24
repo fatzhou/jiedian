@@ -2,18 +2,19 @@
   <div class="recharge-wrap">
     <div class="header">
       <div class="big-sign">
-        <i class="iconfont icon-cunqianguan"></i>
+        <img src="../assets/ZHU.png" alt="">
+        <!--<i class="iconfont icon-cunqianguan"></i>-->
       </div>
       <p class="msg">需支付押金</p>
       <p class="amount">&yen;100.00</p>
       <div class="reminds">充电宝自带充电线支持
         <i class="iconfont icon-apple"></i>
         <i class="iconfont icon-andriod"></i>
-        <i class="iconfont icon-shujuxian"></i>
+        <i class="iconfont icon-shujuxian"></i>(Type-C)
       </div>
     </div>
 
-    <x-button text="确认支付" :active="true" @on-click="recharge"></x-button>
+    <x-button :active="true" @on-click="recharge">确认支付</x-button>
     <p class="recharge-tips">点击支付表示已阅读并同意<span>使用条款</span>和<span>充值协议</span></p>
 
     <divider>温馨提示</divider>
@@ -66,6 +67,8 @@ export default {
   .big-sign{
     margin: 32px auto 0;
     text-align: center;
+    width: 64rpx;
+    height: 64rpx;
     .iconfont{
       color: #FFC502;
       font-size: 48rpx;

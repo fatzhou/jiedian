@@ -3,7 +3,8 @@
     
     <div class="header">
       <div class="big-sign">
-        <i class="iconfont icon-jinbi"></i>
+        <img src="../assets/TIXIAN.png" alt="">
+        <!--<i class="iconfont icon-jinbi"></i>-->
       </div>
       <p class="msg">可提现余额</p>
       <p class="amount">&yen;288.00</p>
@@ -13,7 +14,7 @@
       <input-cell title="提现金额" placeholder="请输入提现金额" class="input-cell-last" :value.sync="amount"></input-cell>
     </div>
     
-    <x-button text="提现" :active="canClick" @on-click="show.confirm = true"></x-button>
+    <x-button :active="canClick" @on-click="show.confirm = true">提现</x-button>
     
     <divider>温馨提示</divider>
 
@@ -85,6 +86,8 @@ export default {
   .big-sign{
     margin: 32px auto 0;
     text-align: center;
+    width: 64rpx;
+    height: 64rpx;
     .iconfont{
       font-size: 48rpx;
     }

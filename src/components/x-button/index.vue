@@ -1,5 +1,7 @@
 <template>
-  <div class="jiedian-button" :class="{'jiedian-button-active': active}" @click="click">{{text}}</div>
+  <div class="jiedian-button" :class="{'jiedian-button-active': active}" @click="click">
+    <slot></slot>
+  </div>
 </template>
 <script>
 export default {

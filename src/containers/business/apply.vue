@@ -24,13 +24,16 @@
         <x-textarea :rows="4" :max="200" placeholder="请输入资源优势" :value="agent.advantage" @input="syncAdvantage"></x-textarea>
       </div>
     </div>
-    <div class="button" :class="{'button-active': canSubmit}" @click="submit">
+    <x-button :active="canSubmit" @click="submit">
       提交申请
-    </div>
+    </x-button>
+    <!--<div class="button" :class="{'button-active': canSubmit}" @click="submit">
+      提交申请
+    </div>-->
   </div>
 </template>
 <script>
-  import { InputCell } from '@/components';
+  import { InputCell, XButton } from '@/components';
   import { Group, XInput, XTextarea } from 'vux';
 
   export default {
