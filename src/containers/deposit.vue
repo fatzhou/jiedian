@@ -86,10 +86,10 @@ export default {
   .big-sign{
     margin: 32px auto 0;
     text-align: center;
-    width: 64rpx;
-    height: 64rpx;
+    width: 64px;
+    height: 64px;
     .iconfont{
-      font-size: 48rpx;
+      font-size: 48px;
     }
   }
   .msg{
@@ -101,10 +101,10 @@ export default {
     margin-top: 12px;
     text-align: center;
     color: #0085EE;
-    font-size: 32rpx;
+    font-size: 32px;
   }
   .content{
-    padding-left: 15rpx;
+    padding-left: 15px;
     margin-top: 8px;
     background-color: #fff;
   }
@@ -119,13 +119,13 @@ export default {
     vux
   */
   .weui-dialog__title, .weui-dialog__btn{
-    font-size: 16rpx;
+    font-size: 16px;
   }
   .weui-dialog__ft{
     line-height: 1.2rem;
   }
   .weui-dialog__bd{
-    font-size: 16rpx;
+    font-size: 16px;
     padding: 0.2em 1.6em;
   }
   .vux-divider{

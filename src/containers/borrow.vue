@@ -43,19 +43,19 @@ export default {
   .divider{
     width: 50%;
     margin: 0 auto;
-    font-size: 14rpx;
+    font-size: 14px;
     color: #212121;
   }
   .tips{
-    margin-top: 16rpx;
+    margin-top: 16px;
     text-align: center;
-    font-size: 14rpx;
+    font-size: 14px;
     span{
      color: #0085ee;
     }
   }
   .borrow-button{
-    font-size: 18rpx;
+    font-size: 16px;
   }
 }
 </style>

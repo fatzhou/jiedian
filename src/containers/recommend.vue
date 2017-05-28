@@ -1,23 +1,191 @@
 <template lang="html">
   <div class="recommend-wrap">
-    推荐好友
+    <div class="header">
+      <img src="../assets/recommend.png" alt="">
+      <div class="board">
+        <p class="tips">成功邀请好友，可获得<strong>10%</strong>的租借金额</p>
+        <x-button :active="true" @on-click="toggleShare">马上邀请好友，赚现金</x-button>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="title">
+        <span class="text">活动细则</span>
+      </div>
+      <div class="content">
+        <p>1. 推荐好友扫一扫，关注“BY街电”</p>
+        <p>2. 通过推荐路径关注BY街电公共号的所有好友，可以提成10%租借消费金额</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="title">
+        <span class="text">已赚到了5位朋友的提成金</span>
+      </div>
+      <div class="content">
+        <ul class="friends">
+          <li class="friend" v-for="friend in friendList" :key="friend.id">
+            <i class="avatar">
+              <img :src="friend.img" alt="">
+            </i>
+            <div class="detail">
+              <p class="name">{{friend.name}}</p>
+              <p class="time">{{friend.time}}</p>
+            </div>
+            <div class="amount">
+              &yen;{{friend.amount}}
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="share-mask" v-if="showShare" @click="toggleShare"></div>
   </div>
 </template>
 
 <script>
+import { XButton } from '@/components'
+
+const time = utils.now()
+const list = Array.from({length: 5}).map((v, i) => {
+  return {
+    id: i,
+    img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1367335817,1439176924&fm=117&gp=0.jpg',
+    name: ['哈哈明', '胡良智', '徐志雷', '月夜枫'].find((v, k)=> {return k === Math.round(Math.random() * 3)}),
+    time,
+    amount: Math.round(Math.random() * 100)
+  }
+})
+
 export default {
   data() {
     return {
+      friendList: list,
+      showShare: false
     };
   },
-  computed: {},
-  ready() {},
-  attached() {},
-  methods: {},
-  components: {}
+  methods: {
+    toggleShare() {
+      this.showShare = !this.showShare
+    }
+  },
+  components: {
+    XButton
+  }
 };
 </script>
 
-<style lang="css">
-
+<style lang="less">
+.recommend-wrap{
+  background-color: #fff;
+  .header{
+    position: relative;
+    overflow: hidden;
+    img{
+      width: 100%;
+      position: relative;
+      top: -7px;
+    }
+    .board{
+      position: absolute;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 118px;
+      background-color: #EDF4FE;
+      border-radius: 4px 4px 0 0;
+    }
+    .tips{
+      height: 32px;
+      line-height: 48px;
+      text-align: center;
+      font-size: 14px;
+    }
+    strong{
+      font-size: 16px;
+      color: #FF8400;
+    }
+  }
+  .section{
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    margin-top: 16px; 
+    .title{
+      position: relative;
+      height: 20px;
+      background-image: url(../assets/line.png);
+      background-size: 100% 40%;
+      background-repeat: no-repeat;
+      background-position-y: 50%;
+    }
+    .text{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: inline-block;
+      background-color: #fff;
+      padding: 0 16px;
+      line-height: 20px;
+      color: #0085EE;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+    .content{
+      padding: 16px 0;
+      font-size: 14px;
+      color: #212121;
+    }
+    .friend{
+      height: 48px;
+      display: flex;
+      margin-bottom: 16px;
+    }
+    .avatar{
+      display: block;
+      width: 48px;
+      height: 48px;
+      border-radius: 4px;
+      overflow: hidden;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .detail{
+      flex: 1;
+      margin-left: 12px;
+      p{
+        height: 24px;
+        line-height: 24px;
+      }
+      .name{
+        color: #212121;
+        font-size: 15px;
+      }
+      .time{
+        color: #999;
+      }
+    }
+    
+    .amount{
+      width: 100px;
+      text-align: right;
+      line-height: 48px;
+      font-size: 16px;
+    }
+  }
+  .share-mask{
+    position: fixed;
+    top: 0;
+    height: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/share.png);
+    background-size: 100% 100%;
+  }
+}
 </style>

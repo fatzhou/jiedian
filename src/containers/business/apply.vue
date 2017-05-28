@@ -101,7 +101,7 @@
       .msg{
         margin-top: 16px;
         text-align: center;
-        font-size: 16rpx;
+        font-size: 16px;
       }
     }
     .big-sign{
@@ -130,10 +130,10 @@
       }
     }
     .content{
-      margin-top: 16rpx;
+      margin-top: 16px;
       border: solid #E8E8E8;
-      border-width: 1rpx 0 1px 0; 
-      padding-left: 15rpx;
+      border-width: 1px 0 1px 0; 
+      padding-left: 15px;
       background-color: #fff;
     }
     .input-group{
@@ -141,13 +141,13 @@
     }
     
     .button{
-      margin: 16rpx auto 0;
+      margin: 16px auto 0;
       width: 288px;
       height: 44px;
       background-color: #0085EE;
       color: rgba(255, 255, 255, .4);
-      border-radius: 4rpx;
-      font-size: 16rpx;
+      border-radius: 4px;
+      font-size: 16px;
       line-height: 44px;
       text-align: center
     }

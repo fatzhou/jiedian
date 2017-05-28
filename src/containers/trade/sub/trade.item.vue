@@ -27,40 +27,40 @@ export default {
 </script>
 <style lang="less">
 .trade-list-item{
-  margin-top: 8rpx;
+  margin-top: 8px;
   background-color: #fff;
-  padding: 16rpx 0;
+  padding: 16px 0;
   box-sizing: border-box;
   display: flex;
   border: solid #e6e6e6;
-  border-width: 1rpx 0 1px 0;
+  border-width: 1px 0 1px 0;
   .section{
-    width: 75rpx;
+    width: 75px;
     text-align: center;
-    height: 40rpx;
-    line-height: 40rpx;
-    font-size: 16rpx;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
     color: #0085EE;
-    border-right: 1rpx solid #E6E6E6;
+    border-right: 1px solid #E6E6E6;
   }
   .detail{
     flex: 1;
     padding: 0 16px;
   }
   .order-code{
-    font-size: 14rpx;
+    font-size: 14px;
     color: #212121;
   }
   .order-time{
-    font-size: 12rpx;
+    font-size: 12px;
     color: #757575;
   }
   .amount{
     width: 75px;
     text-align: center;
-    height:40rpx;
-    line-height: 40rpx;
-    font-size: 16rpx;
+    height:40px;
+    line-height: 40px;
+    font-size: 16px;
   }
 }
 .trade-status-1{

@@ -37,15 +37,15 @@ export default {
 <style lang="less">
 .input-cell{
   display: flex;
-  padding: 10rpx 15px 10px 0; 
-  font-size: 14rpx;
-  border-bottom: 1rpx solid #E8E8E8;
+  padding: 10px 15px 10px 0; 
+  font-size: 14px;
+  border-bottom: 1px solid #E8E8E8;
   label{
     display: inline-block;
     width: 8em;
     color: #757575;
-    height: 22rpx;
-    line-height: 22rpx;
+    height: 22px;
+    line-height: 22px;
   }
   .input-section{
     width: 100%;
@@ -53,8 +53,8 @@ export default {
   input{
     display: inline-block;
     width: 100%;
-    height: 22rpx;
-    line-height: 22rpx;
+    height: 22px;
+    line-height: 22px;
     border: 0;
   }
 }

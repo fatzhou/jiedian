@@ -61,17 +61,17 @@ export default {
     width: 100%;
     background-color: #fff;
     overflow: hidden;
-    padding: 0 16rpx;
+    padding: 0 16px;
     box-sizing: border-box;
   }
   .big-sign{
     margin: 32px auto 0;
     text-align: center;
-    width: 64rpx;
-    height: 64rpx;
+    width: 64px;
+    height: 64px;
     .iconfont{
       color: #FFC502;
-      font-size: 48rpx;
+      font-size: 48px;
     }
   }
   .msg{
@@ -83,33 +83,33 @@ export default {
     margin: 6px 0;
     text-align: center;
     color: #0085EE;
-    font-size: 32rpx;
+    font-size: 32px;
   }
   .reminds{
-    border-top: 1rpx solid #F2F2F2;
+    border-top: 1px solid #F2F2F2;
     text-align: center;
     height: 64px;
     line-height: 64px;
-    font-size: 14rpx;
+    font-size: 12px;
     color: #757575;
     .iconfont{
       color: #757575;
-      margin-right: 2rpx;
+      margin-right: 2px;
     }
     .icon-apple{
-      font-size: 18rpx;
+      font-size: 18px;
     }
     .icon-andriod{
       position: relative;
-      top: 1rpx;
+      top: 1px;
     }
     .icon-shujuxian{
       position: relative;
-      top: 1rpx;
+      top: 1px;
     }
   }
   .recharge-tips{
-    margin-top: 8rpx;
+    margin-top: 8px;
     text-align: center;
     color: #999;
     span{

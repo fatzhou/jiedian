@@ -50,12 +50,12 @@ export default {
     height: 48px;
     line-height: 48px;
     background-color: #f6f6f6;
-    padding: 0 22rpx;
-    font-size: 14rpx;
-    border-bottom: 1rpx solid #e6e6e6;
+    padding: 0 22px;
+    font-size: 14px;
+    border-bottom: 1px solid #e6e6e6;
     .iconfont{
       float: right;
-      font-size: 20rpx;
+      font-size: 20px;
     }
   }
   .content{

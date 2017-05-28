@@ -43,20 +43,20 @@ export default {
   .divider{
     width: 50%;
     margin: 0 auto;
-    font-size: 14rpx;
+    font-size: 14px;
     color: #212121;
   }
   .tips{
-    margin-top: 16rpx;
-    padding: 0 16rpx;
-    font-size: 14rpx;
+    margin-top: 16px;
+    padding: 0 16px;
+    font-size: 14px;
     span{
      color: #00A282;
     }
   }
   .return-button{
     background-color: #00A282;
-    font-size: 18rpx;
+    font-size: 16px;
   }
 }
 </style>

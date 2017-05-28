@@ -22,14 +22,14 @@ export default {
 <style lang="less">
 .jiedian-button{
   margin: 16px auto 0;
-  width: 288px;
+  width: 86%;
   height: 44px;
   line-height: 44px;
   text-align: center;
-  border-radius: 4rpx;
+  border-radius: 4px;
   background-color: #0085ee;
   color: rgba(255, 255, 255, 0.4);
-  font-size: 16rpx;
+  font-size: 14px;
 }
 .jiedian-button-active{
   color: rgba(255, 255, 255, 1);

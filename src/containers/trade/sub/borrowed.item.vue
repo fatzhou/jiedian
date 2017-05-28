@@ -45,59 +45,59 @@ export default {
 </script>
 <style lang="less">
 .borrowed-item-wrap{
-  margin-top: 8rpx;
+  margin-top: 8px;
   background: #fff;
   .header{
-    padding: 16rpx;
+    padding: 16px;
     box-sizing: border-box;
     display: flex;
-    border-bottom: 1rpx solid #f5f5f5;
+    border-bottom: 1px solid #f5f5f5;
     .code{
       flex: 1;
       color: #757575;
-      font-size: 14rpx;
+      font-size: 14px;
     }
     .sign{
-      width: 40rpx;
-      height: 20rpx;
-      border-radius: 2rpx;
+      width: 40px;
+      height: 20px;
+      border-radius: 2px;
       background-color: #bdbdbd;
       color: #fff;
       text-align: center;
-      line-height: 20rpx;
-      font-size: 12rpx;
+      line-height: 20px;
+      font-size: 12px;
     }
   }
   .content{
     display: flex;
-    height: 176rpx;
+    height: 176px;
     .money{
-      width: 88rpx;
+      width: 88px;
       text-align: center;
     }
     .amount{
-      margin-top: 48rpx;
+      margin-top: 48px;
       color: #0085ee;
-      font-size: 32rpx;
+      font-size: 32px;
     }
     small{
-      font-size: 14rpx;
+      font-size: 14px;
     }
     .tips{
-      margin-top: -4rpx;
-      font-size: 12rpx;
+      margin-top: -4px;
+      font-size: 12px;
       color: #999;
     }
     .detail{
       flex: 1;
     }
     .borrow-site, .borrow-time, .return-site, .return-time{
-      height: 44rpx;
-      line-height: 44rpx;
+      height: 44px;
+      line-height: 44px;
       box-sizing: border-box;
-      font-size: 14rpx;
+      font-size: 14px;
       display: flex;
-      padding-right: 16rpx;
+      padding-right: 16px;
       label{
         color: #757575;
       }
@@ -108,7 +108,7 @@ export default {
       }
     }
     .borrow-site, .borrow-time, .return-site,{
-      border-bottom: 1rpx solid #f5f5f5;
+      border-bottom: 1px solid #f5f5f5;
     }
   }
 }

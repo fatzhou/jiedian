@@ -25,8 +25,8 @@ export default {
     text-align: center;
     line-height: 44px;
     margin: 16px auto;
-    border-radius: 4rpx;
-    font-size: 16rpx;
+    border-radius: 4px;
+    font-size: 16px;
   }
 }
 </style>

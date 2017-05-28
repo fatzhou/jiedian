@@ -26,15 +26,13 @@
       <cell title="优惠商城" is-link>
         <i class="iconfont icon-youhuishangcheng" slot="icon"></i>
       </cell>
-      <cell title="推荐好友" is-link>
-        <i class="iconfont icon-elite" slot="icon"></i>
-      </cell>
-      <cell title="推荐提成" is-link>
-        <i class="iconfont icon-liwu" slot="icon"></i>
-      </cell>
-      <cell title="帮助中心" is-link>
+      <cell title="帮助中心" is-link link="/help">
         <i class="iconfont icon-information" slot="icon"></i>
       </cell>
+      <cell title="推荐好友赚提成" is-link link="/recommend">
+        <i class="iconfont icon-elite" slot="icon"></i>
+      </cell>
+    
     </group>
     <p class="contact">客服电话：<a href="tel:4000805985" class="tel">400-0805-985</a></p>
   </div>
@@ -97,7 +95,7 @@ export default {
     width: 100%;
     text-align: center;
     font-weight: bold;
-    font-size: 16rpx;
+    font-size: 16px;
   }
   .remainder{
     height: 30px;
@@ -105,51 +103,51 @@ export default {
     text-align: center;
     background-color: #fff;
     color: #889199;
-    font-size: 14rpx;
+    font-size: 14px;
     .money{
       color: #FF8400;
     }
   }
   .ctrl-money{
-    margin-top: 1rpx;
+    margin-top: 1px;
     display: flex;
-    padding: 8rpx 0;
+    padding: 8px 0;
     background-color: #fff;
-    font-size: 16rpx;
-    border-bottom: 1rpx solid #f4f4f4;
+    font-size: 14px;
+    border-bottom: 1px solid #f4f4f4;
     .item{
       display: block;
       flex: 1;
       text-align: center;
-      height: 32rpx;
-      line-height: 32rpx;
+      height: 32px;
+      line-height: 32px;
     }
     .deposit{
       border-right: 1px solid #f4f4f4;
     }
     .iconfont{
       color: @blue;
-      margin-right: 4rpx;
+      margin-right: 4px;
     }
   }
   .group .iconfont{
     position: relative;
-    top: -2rpx;
-    margin-right: 4rpx;
+    top: -1px;
+    margin-right: 4px;
     color: #9B9B9B;
   }
   /*
     vux
   */
   .vux-no-group-title{
-    margin-top: 8rpx;
+    margin-top: 8px;
   }
   .vux-label{
-    font-size: 16rpx;
+    font-size: 14px;
   }
   .contact{
-    height: 32rpx;
-    line-height: 32rpx;
+    height: 32px;
+    line-height: 32px;
     color: #757575;
     text-align: center;
   }
@@ -157,7 +155,7 @@ export default {
     color: @blue;
   }
   .weui-cell{
-    padding: 10rpx 15px;
+    padding: 10px 15px;
   }
 }
 </style>

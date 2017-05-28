@@ -110,6 +110,13 @@ const router = new VueRouter({
       component: (r) => {
         require(['@/containers/trade/borrow.list'], r)
       }
+    },
+    {
+      path: '/help',
+      name: 'helpCenter',
+      component: (r) => {
+        require(['@/containers/help.center.vue'], r)
+      }
     }
   ]
 });
