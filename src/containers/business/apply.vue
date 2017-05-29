@@ -24,12 +24,9 @@
         <x-textarea :rows="4" :max="200" placeholder="请输入资源优势" :value="agent.advantage" @input="syncAdvantage"></x-textarea>
       </div>
     </div>
-    <x-button :active="canSubmit" @click="submit">
+    <x-button :active="canSubmit" @on-click="submit">
       提交申请
     </x-button>
-    <!--<div class="button" :class="{'button-active': canSubmit}" @click="submit">
-      提交申请
-    </div>-->
   </div>
 </template>
 <script>
@@ -40,6 +37,7 @@
     components: {
       Group,
       InputCell,
+      XButton,
       XInput,
       XTextarea
     },

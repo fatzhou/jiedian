@@ -49,6 +49,11 @@ export default {
 html,body{
   background-color: #f4f4f4;
 }
+
+a{
+  text-decoration: none;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
