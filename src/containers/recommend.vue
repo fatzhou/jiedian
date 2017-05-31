@@ -2,9 +2,9 @@
   <div class="recommend-wrap">
     <div class="header">
       <img src="../assets/recommend.png" alt="">
-      <div class="board">
-        <p class="tips">成功邀请好友，可获得<strong>10%</strong>的租借金额</p>
-        <x-button :active="true" @on-click="toggleShare">马上邀请好友，赚现金</x-button>
+      <div class="board" @click="toggleShare">
+        <!--<p class="tips">成功邀请好友，可获得<strong>10%</strong>的租借金额</p>-->
+        <!--<x-button :active="true" @on-click="toggleShare">马上邀请好友，赚现金</x-button>-->
       </div>
     </div>
 
@@ -95,17 +95,17 @@ export default {
       transform: translateX(-50%);
       width: 80%;
       height: 118px;
-      background-color: #EDF4FE;
+      // background-color: #EDF4FE;
       border-radius: 4px 4px 0 0;
     }
     .tips{
       height: 32px;
       line-height: 48px;
       text-align: center;
-      font-size: 14px;
+      font-size: 14rpx;
     }
     strong{
-      font-size: 16px;
+      font-size: 16rpx;
       color: #FF8400;
     }
   }
@@ -131,12 +131,12 @@ export default {
       padding: 0 16px;
       line-height: 20px;
       color: #0085EE;
-      font-size: 16px;
+      font-size: 16rpx;
       white-space: nowrap;
     }
     .content{
       padding: 16px 0;
-      font-size: 14px;
+      font-size: 14rpx;
       color: #212121;
     }
     .friend{
@@ -164,18 +164,21 @@ export default {
       }
       .name{
         color: #212121;
-        font-size: 15px;
+        font-size: 15rpx;
       }
       .time{
         color: #999;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
     
     .amount{
-      width: 100px;
+      width: 80rpx;
       text-align: right;
       line-height: 48px;
-      font-size: 16px;
+      font-size: 16rpx;
     }
   }
   .share-mask{

@@ -111,7 +111,7 @@ export default {
   .ctrl-money{
     margin-top: 1px;
     display: flex;
-    padding: 8px 0;
+    padding: 4rpx 0;
     background-color: #fff;
     font-size: 14px;
     border-bottom: 1px solid #f4f4f4;
@@ -155,7 +155,7 @@ export default {
     color: @blue;
   }
   .weui-cell{
-    padding: 10px 15px;
+    padding: 10px 15rpx;
   }
 }
 </style>

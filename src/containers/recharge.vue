@@ -88,8 +88,8 @@ export default {
   .reminds{
     border-top: 1px solid #F2F2F2;
     text-align: center;
-    height: 64px;
-    line-height: 64px;
+    height: 64rpx;
+    line-height: 64rpx;
     font-size: 12px;
     color: #757575;
     .iconfont{

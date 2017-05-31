@@ -29,7 +29,7 @@ export default {
   border-radius: 4px;
   background-color: #0085ee;
   color: rgba(255, 255, 255, 0.4);
-  font-size: 14px;
+  font-size: 14rpx;
 }
 .jiedian-button-active{
   color: rgba(255, 255, 255, 1);
