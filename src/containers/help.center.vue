@@ -30,12 +30,12 @@ export default {
     line-height: 48px;
     background-color: #f6f6f6;
     padding: 0 22px;
-    font-size: 12px;
+    font-size: 12rpx;
     color: #616161;
     border-bottom: 1px solid #e6e6e6;
   }
   .vux-label{
-    font-size: 14px;
+    font-size: 14rpx;
   }
 }
 </style>

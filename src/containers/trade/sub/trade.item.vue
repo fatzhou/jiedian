@@ -39,7 +39,7 @@ export default {
     text-align: center;
     height: 40px;
     line-height: 40px;
-    font-size: 16px;
+    font-size: 16rpx;
     color: #0085EE;
     border-right: 1px solid #E6E6E6;
   }
@@ -48,11 +48,11 @@ export default {
     padding: 0 16px;
   }
   .order-code{
-    font-size: 14px;
+    font-size: 14rpx;
     color: #212121;
   }
   .order-time{
-    font-size: 12px;
+    font-size: 12rpx;
     color: #757575;
   }
   .amount{
@@ -60,7 +60,7 @@ export default {
     text-align: center;
     height:40px;
     line-height: 40px;
-    font-size: 16px;
+    font-size: 16rpx;
   }
 }
 .trade-status-1{

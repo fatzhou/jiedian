@@ -34,7 +34,7 @@
     color: #fff;
     text-align: center;
     .iconfont{
-      font-size: 32px;
+      font-size: 32rpx;
     }
   }
   .seller{
@@ -49,7 +49,7 @@
   }
   .msg{
     text-align: center;
-    font-size: 16px;
+    font-size: 16rpx;
   }
 }
 </style>

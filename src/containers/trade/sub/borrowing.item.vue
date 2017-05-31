@@ -47,7 +47,7 @@ export default {
     .code{
       flex: 1;
       color: #757575;
-      font-size: 14px;
+      font-size: 14prx;
     }
     .sign{
       width: 40px;
@@ -57,7 +57,7 @@ export default {
       color: #fff;
       text-align: center;
       line-height: 20px;
-      font-size: 12px;
+      font-size: 12rpx;
     }
   }
   .content{
@@ -70,10 +70,10 @@ export default {
     .amount{
       margin-top: 8px;
       color: #0085ee;
-      font-size: 32px;
+      font-size: 32rpx;
     }
     small{
-      font-size: 14px;
+      font-size: 14rpx;
     }
     .tips{
       margin-top: -4px;
@@ -87,7 +87,7 @@ export default {
       height: 44px;
       line-height: 44px;
       box-sizing: border-box;
-      font-size: 14px;
+      font-size: 14rpx;
       display: flex;
       padding-right: 16px;
       label{
@@ -101,8 +101,6 @@ export default {
     }
     .borrow-site{
       border-bottom: 1px solid #f5f5f5;
-    }
-    .borrow-time{
     }
   }
 }

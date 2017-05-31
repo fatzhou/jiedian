@@ -71,7 +71,7 @@ export default {
     height: 64px;
     .iconfont{
       color: #FFC502;
-      font-size: 48px;
+      font-size: 48rpx;
     }
   }
   .msg{
@@ -83,21 +83,21 @@ export default {
     margin: 6px 0;
     text-align: center;
     color: #0085EE;
-    font-size: 32px;
+    font-size: 32rpx;
   }
   .reminds{
     border-top: 1px solid #F2F2F2;
     text-align: center;
     height: 64rpx;
     line-height: 64rpx;
-    font-size: 12px;
+    font-size: 12rpx;
     color: #757575;
     .iconfont{
       color: #757575;
       margin-right: 2px;
     }
     .icon-apple{
-      font-size: 18px;
+      font-size: 18rpx;
     }
     .icon-andriod{
       position: relative;

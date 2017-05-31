@@ -95,7 +95,7 @@ export default {
     width: 100%;
     text-align: center;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 16rpx;
   }
   .remainder{
     height: 30px;
@@ -103,7 +103,7 @@ export default {
     text-align: center;
     background-color: #fff;
     color: #889199;
-    font-size: 14px;
+    font-size: 14rpx;
     .money{
       color: #FF8400;
     }
@@ -113,7 +113,7 @@ export default {
     display: flex;
     padding: 4rpx 0;
     background-color: #fff;
-    font-size: 14px;
+    font-size: 14rpx;
     border-bottom: 1px solid #f4f4f4;
     .item{
       display: block;
@@ -143,7 +143,7 @@ export default {
     margin-top: 8px;
   }
   .vux-label{
-    font-size: 14px;
+    font-size: 14rpx;
   }
   .contact{
     height: 32px;

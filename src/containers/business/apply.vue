@@ -99,7 +99,7 @@
       .msg{
         margin-top: 16px;
         text-align: center;
-        font-size: 16px;
+        font-size: 16rpx;
       }
     }
     .big-sign{
@@ -112,7 +112,7 @@
       margin: 36px auto 0;
       .iconfont{
         display: none;
-        font-size: 32px;
+        font-size: 32rpx;
       }
     }
     .big-sign-seller{
@@ -145,7 +145,7 @@
       background-color: #0085EE;
       color: rgba(255, 255, 255, .4);
       border-radius: 4px;
-      font-size: 16px;
+      font-size: 16rpx;
       line-height: 44px;
       text-align: center
     }
