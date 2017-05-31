@@ -23,7 +23,8 @@ var webpackConfig = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'api': resolve('src/api.js')
+      'api': resolve('src/api.js'),
+      'utils': resolve('src/utils')
     }
   },
   plugins: [

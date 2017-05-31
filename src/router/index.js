@@ -9,114 +9,82 @@ const router = new VueRouter({
     {
       path: '/business',
       name: 'business',
-      component: (r) => {
-        require(['@/containers/business/index.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/business/index.vue')), 'business')
     },
     {
       path: '/business/apply/:type',
       name: 'businessForApply',
-      component: (r) => {
-        require(['@/containers/business/apply.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/business/apply.vue')), 'businessForApply')
     },
     {
       path: '/business/reply',
       name: 'businessForReply',
-      component: (r) => {
-        require(['@/containers/business/reply.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/business/reply.vue')), 'businessForReply')
     },
     {
       path: '/reply/:type',
       name: 'commonReply',
-      component: (r) => {
-        require(['@/containers/common/msg.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/common/msg.vue')), 'commonReply')
     },
     {
       path: '/shop/detail',
       name: 'shopDetail',
-      component: (r) => {
-        require(['@/containers/shop/detail.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/shop/detail.vue')), 'shopDetail')
     },
     {
       path: '/shop/list',
       name: 'shopList',
-      component: (r) => {
-        require(['@/containers/shop/list.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/shop/list.vue')), 'shopList')
     },
     {
       path:'/borrow',
       name: 'borrow',
-      component: (r) => {
-        require(['@/containers/borrow.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/borrow.vue')), 'borrow')
     },
     {
       path:'/coupon',
       name: 'coupon',
-      component: (r) => {
-        require(['@/containers/coupon.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/coupon.vue')), 'coupon')
     },
     {
       path:'/deposit',
       name: 'deposit',
-      component: (r) => {
-        require(['@/containers/deposit.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/deposit.vue')), 'deposit')
     },
     {
       path: '/my',
       name: 'my',
-      component: (r) => {
-        require(['@/containers/my.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/my.vue')), 'my')
     },
     {
       path:'/recharge',
       name: 'recharge',
-      component: (r) => {
-        require(['@/containers/recharge.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/recharge.vue')), 'recharge')
     },
     {
       path:'/recommend',
       name: 'recommend',
-      component: (r) => {
-        require(['@/containers/recommend.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/recommend.vue')), 'recommend')
     },
     {
       path: '/return',
       name: 'return',
-      component: (r) => {
-        require(['@/containers/return.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/return')), 'return')
     },
     {
       path: '/my/trade/list',
       name: 'tradeList',
-      component: (r) => {
-        require(['@/containers/trade/trade.list'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/trade/trade.list')), 'tradeList')
     },
     {
       path: '/my/borrow/list',
       name: 'borrowList',
-      component: (r) => {
-        require(['@/containers/trade/borrow.list'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/trade/borrow.list')), 'borrowList')
     },
     {
       path: '/help',
       name: 'helpCenter',
-      component: (r) => {
-        require(['@/containers/help.center.vue'], r)
-      }
+      component: r => require.ensure([], () => r(require('@/containers/help.center.vue')), 'helpCenter')
     }
   ]
 });

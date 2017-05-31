@@ -10,6 +10,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import { Spinner } from 'vux'
+import { wxRegister } from 'utils'
 
 export default {
   name: 'app',
@@ -28,7 +29,7 @@ export default {
     })
   },
   created() {
-    
+    wxRegister(location.href)
   },
   mounted() {
     this.$nextTick(() => {
