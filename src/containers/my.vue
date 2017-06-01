@@ -41,6 +41,7 @@
 <script>
 import { Cell, Group, Alert } from 'vux'
 import { mapState } from 'vuex'
+import { modifyTitle } from 'utils'
 
 export default {
   data() {
@@ -54,6 +55,7 @@ export default {
     })
   },
   created() {
+    modifyTitle('个人中心')
   },
   methods: {
   },

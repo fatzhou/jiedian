@@ -31,8 +31,9 @@
 </template>
 
 <script>
-import { InputCell, XButton } from '@/components';
-import { Confirm, Divider } from 'vux';
+import { InputCell, XButton } from '@/components'
+import { Confirm, Divider } from 'vux'
+import { modifyTitle } from 'utils'
 
 export default {
   data() {
@@ -41,7 +42,10 @@ export default {
       show: {
         confirm: false
       }
-    };
+    }
+  },
+  created () {
+    modifyTitle('提现')
   },
   computed: {
     canClick() {

@@ -47,6 +47,7 @@
 
 <script>
 import { XButton } from '@/components'
+import { modifyTitle } from 'utils'
 
 const time = utils.now()
 const list = Array.from({length: 5}).map((v, i) => {
@@ -64,7 +65,10 @@ export default {
     return {
       friendList: list,
       showShare: false
-    };
+    }
+  },
+  created () {
+    modifyTitle('推荐好友')
   },
   methods: {
     toggleShare() {
@@ -74,7 +78,7 @@ export default {
   components: {
     XButton
   }
-};
+}
 </script>
 
 <style lang="less">

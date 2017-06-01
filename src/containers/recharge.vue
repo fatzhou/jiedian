@@ -28,18 +28,19 @@
 
 <script>
 import { XButton } from '@/components'
-import { Divider } from 'vux';
+import { Divider } from 'vux'
+import { modifyTitle } from 'utils'
 
 export default {
   data() {
     return {
     };
   },
-  computed: {},
-  ready() {},
-  attached() {},
+  created () {
+    modifyTitle('充值')
+  },
   methods: {
-    recharge() {
+    recharge () {
       this.$router.push({
         name: 'commonReply',
         params: {

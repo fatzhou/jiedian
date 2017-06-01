@@ -18,6 +18,7 @@
 import { Tab, TabItem } from 'vux'
 import BorrowedItem from './sub/borrowed.item'
 import BorrowingItem from './sub/borrowing.item'
+import { modifyTitle } from 'utils'
 
 const time = utils.now()
 const list = Array.from({ length: 20 }).map((v, i) => {
@@ -36,6 +37,9 @@ export default {
       borrowingList: list,
       borrowedList: list
     }
+  },
+  created () {
+    modifyTitle('租借记录')
   },
   components: {
     Tab,

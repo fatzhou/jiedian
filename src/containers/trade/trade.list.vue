@@ -13,6 +13,7 @@
 <script>
 import { Scroller } from 'vux'
 import Item from './sub/trade.item'
+import { modifyTitle } from 'utils'
 
 const time = utils.now()
 const list = Array.from({length: 20}).map((v, i) => {
@@ -32,6 +33,7 @@ export default {
     };
   },
   created() {
+    modifyTitle('交易记录')
   },
   methods: {},
   components: {

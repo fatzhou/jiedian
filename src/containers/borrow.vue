@@ -13,15 +13,16 @@
 <script>
 import { Divider } from 'vux'
 import { XButton } from '@/components'
+import { modifyTitle } from 'utils'
 
 export default {
   data() {
     return {
     };
   },
-  computed: {},
-  ready() {},
-  attached() {},
+  created () {
+    modifyTitle('借充电宝')
+  },
   methods: {},
   components: {
     Divider,

@@ -30,9 +30,9 @@ export function now() {
  * 微信注册url
  */
 export function wxRegister (url) {
-  const json = apiGetSign(url)
+  const json = apiGetSign(encodeURIComponent(url))
   json.then((res) => {
-    // alert(toString(res))
+    alert(toString(res))
   })
 }
 
@@ -151,4 +151,28 @@ export function unique (arr) {
   if (typeof Set !== 'undefined') {
     return [...new Set(arr)]
   }
+}
+
+/**
+ * 修改微信title
+ */
+export function modifyTitle (title) {
+  if (navigator.userAgent.indexOf('Android') == -1) {
+    const iframe = document.createElement('iframe')
+    const body = document.body
+
+    iframe.setAttribute('src', '/isLive')
+    iframe.style.position = 'absolute'
+    iframe.style.top = '-100000px'
+
+    iframe.addEventListener('load', function load () {
+      setTimeout(() => {
+        iframe.removeEventListener('load', load)
+        body.removeChild(iframe);
+      })
+    })
+
+    body.appendChild(iframe)
+  }
+  document.title = title
 }
