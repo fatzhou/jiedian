@@ -6,7 +6,7 @@ function get (url, params) {
 }
 
 function post (url, params) {
-  return axios.post(url, { params })
+  return axios.post(url, params)
 }
 
 const rootUrl = 'http://byjiedian.com/index.php'
