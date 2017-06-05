@@ -29,11 +29,10 @@ export default {
     })
   },
   created() {
-    wxRegister(location.href)
+    // wxRegister(location.href)
   },
   mounted() {
     this.$nextTick(() => {
-      this.getUserInfo()
     })
   },
   methods: {

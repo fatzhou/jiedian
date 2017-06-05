@@ -6,14 +6,14 @@
     <divider class="divider">使用方法</divider>
     <p class="tips">点击<span>扫码借充电宝</span>，然后扫描柜机上的二维码</p>
     <!--<div class="button">扫码借充电宝</div>-->
-    <x-button :active="true" class="borrow-button">扫码借充电宝</x-button>
+    <x-button :active="true" class="borrow-button" @on-click="scanQrcode">扫码借充电宝</x-button>
   </div>
 </template>
 
 <script>
 import { Divider } from 'vux'
 import { XButton } from '@/components'
-import { modifyTitle } from 'utils'
+import { modifyTitle, wxRegister, toString } from 'utils'
 
 export default {
   data() {
@@ -22,8 +22,19 @@ export default {
   },
   created () {
     modifyTitle('借充电宝')
+    wxRegister(location.href)
   },
-  methods: {},
+  methods: {
+    scanQrcode () {
+      wx.scanQRCode({
+        needResult: 1,
+        scanType: ['qrCode'],
+        success (res) {
+          alert(toString(res))
+        }
+      })
+    }
+  },
   components: {
     Divider,
     XButton

@@ -29,7 +29,7 @@ var webpackConfig = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      utils: resolve('src/utils.js')
+      utils: resolve('src/utils')
     })
   ],
   module: {

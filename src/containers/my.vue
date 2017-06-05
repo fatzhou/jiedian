@@ -40,8 +40,8 @@
 
 <script>
 import { Cell, Group, Alert } from 'vux'
-import { mapState } from 'vuex'
-import { modifyTitle } from 'utils'
+import { mapState, mapActions } from 'vuex'
+import { modifyTitle, wxRegister } from 'utils'
 
 export default {
   data() {
@@ -56,8 +56,13 @@ export default {
   },
   created() {
     modifyTitle('个人中心')
+    wxRegister(location.href)
+    this.getUserInfo()
   },
   methods: {
+    ...mapActions({
+      getUserInfo: 'getUserInfo'
+    })
   },
   components: {
     Cell,

@@ -1,4 +1,3 @@
-import { apiGetSign } from 'api'
 /**
  * 1.类型检测与转换
  */
@@ -116,84 +115,14 @@ export function unique (arr) {
   }
 }
 
-/**
- * 修改微信title
- */
-export function modifyTitle (title) {
-  if (navigator.userAgent.indexOf('Android') == -1) {
-    const iframe = document.createElement('iframe')
-    const body = document.body
+const base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+const base64DecodeChars = new Array(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1);
 
-    iframe.setAttribute('src', '/isLive')
-    iframe.style.position = 'absolute'
-    iframe.style.top = '-100000px'
-
-    iframe.addEventListener('load', function load () {
-      setTimeout(() => {
-        iframe.removeEventListener('load', load)
-        body.removeChild(iframe);
-      })
-    })
-
-    body.appendChild(iframe)
-  }
-  document.title = title
-}
-
-
-/**
- * 获取当前时间 默认格式 2017-05-24 01:12:31
- */
-export function now() {
-  const now = new Date()
-  
-  const y = now.getFullYear()
-  let mon = unshift0(now.getMonth() + 1)
-  let d = unshift0(now.getDate())
-  let h = unshift0(now.getHours())
-  let min = unshift0(now.getMinutes())
-  let s = unshift0(now.getSeconds())
-
-  /**
-   * 补0
-   * @param {*} string
-   */
-  function unshift0(s) {
-    if (parseInt(s) < 10) {
-      return '0' + s
-    }
-    return s
-  }
-
-  return `${y}-${mon}-${d} ${h}:${min}:${s}`
-}
-
-/**
- * 微信注册url
- */
-export function wxRegister (url) {
-  const json = apiGetSign(base64encode(url))
-  json.then((res) => {
-    const data = res.data
-    const config = {
-      debug: true,
-      appId: data.appId,
-      timestamp: data.timestamp+'',
-      nonceStr: data.nonceStr,
-      signature: data.signature,
-      jsApiList: ['onMenuShareTimeline']
-    }
-    wx.config(config)
-  })
-}
-
-var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-var base64DecodeChars = new Array(-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 62, -1, -1, -1, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1);
 /**
  * base64编码
  * @param {Object} str
  */
-function base64encode(str){
+export function base64encode(str){
     var out, i, len;
     var c1, c2, c3;
     len = str.length;
@@ -222,4 +151,84 @@ function base64encode(str){
         out += base64EncodeChars.charAt(c3 & 0x3F);
     }
     return out;
+}
+
+
+/**
+ * base64解码
+ * @param {Object} str
+ */
+export function base64decode(str){
+    var c1, c2, c3, c4;
+    var i, len, out;
+    len = str.length;
+    i = 0;
+    out = "";
+    while (i < len) {
+        /* c1 */
+        do {
+            c1 = base64DecodeChars[str.charCodeAt(i++) & 0xff];
+        }
+        while (i < len && c1 == -1);
+        if (c1 == -1) 
+            break;
+        /* c2 */
+        do {
+            c2 = base64DecodeChars[str.charCodeAt(i++) & 0xff];
+        }
+        while (i < len && c2 == -1);
+        if (c2 == -1) 
+            break;
+        out += String.fromCharCode((c1 << 2) | ((c2 & 0x30) >> 4));
+        /* c3 */
+        do {
+            c3 = str.charCodeAt(i++) & 0xff;
+            if (c3 == 61) 
+                return out;
+            c3 = base64DecodeChars[c3];
+        }
+        while (i < len && c3 == -1);
+        if (c3 == -1) 
+            break;
+        out += String.fromCharCode(((c2 & 0XF) << 4) | ((c3 & 0x3C) >> 2));
+        /* c4 */
+        do {
+            c4 = str.charCodeAt(i++) & 0xff;
+            if (c4 == 61) 
+                return out;
+            c4 = base64DecodeChars[c4];
+        }
+        while (i < len && c4 == -1);
+        if (c4 == -1) 
+            break;
+        out += String.fromCharCode(((c3 & 0x03) << 6) | c4);
+    }
+    return out;
+}
+
+/**
+ * 获取当前时间 默认格式 2017-05-24 01:12:31
+ */
+export function now() {
+  const now = new Date()
+  
+  const y = now.getFullYear()
+  let mon = unshift0(now.getMonth() + 1)
+  let d = unshift0(now.getDate())
+  let h = unshift0(now.getHours())
+  let min = unshift0(now.getMinutes())
+  let s = unshift0(now.getSeconds())
+
+  /**
+   * 补0
+   * @param {*} string
+   */
+  function unshift0(s) {
+    if (parseInt(s) < 10) {
+      return '0' + s
+    }
+    return s
+  }
+
+  return `${y}-${mon}-${d} ${h}:${min}:${s}`
 }
