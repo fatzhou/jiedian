@@ -14,6 +14,7 @@
   </div>
 </template>
 <script>
+import { modifyTitle, wxRegister } from 'utils'
 
 export default {
   data () {
@@ -22,17 +23,29 @@ export default {
     }
   },
   created () {
-    
+    wxRegister(location.href)
   },
   mounted () {
     this.init()
+    this.getLocation()
   },
   methods: {
     init () {
       this.map = new AMap.Map('container', {
         resizeEnable: true,
         zoom:14,
-        // center: [116.397428, 39.90923]
+      })
+    },
+    getLocation () {
+      const self = this
+      wx.ready(() => {
+        wx.getLocation({
+          type: 'gcj02',
+          success (res) {
+            self.map.setZoomAndCenter(14, [res.longitude, res.latitude]);
+            // alert(res.latitude +', '+res.longitude)
+          }
+        })
       })
     }
   }
