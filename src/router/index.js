@@ -85,6 +85,16 @@ const router = new VueRouter({
       path: '/help',
       name: 'helpCenter',
       component: r => require.ensure([], () => r(require('@/containers/help.center.vue')), 'helpCenter')
+    },
+    {
+      path: '/map',
+      name: 'map',
+      component: r => require.ensure([], () => r(require('@/containers/near/map.vue')), 'map')
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: r => require.ensure([], () => r(require('@/containers/test.vue')), 'test')
     }
   ]
 });

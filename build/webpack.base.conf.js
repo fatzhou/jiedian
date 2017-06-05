@@ -9,6 +9,9 @@ function resolve (dir) {
 }
 var webpackConfig = {
   entry: {
+    vendor: [
+      './src/common.js'
+    ],
     app: './src/main.js'
   },
   output: {
@@ -26,6 +29,9 @@ var webpackConfig = {
       'api': resolve('src/api.js'),
       'utils': resolve('src/utils')
     }
+  },
+  externals: {
+    'AMap': 'window.AMap'
   },
   plugins: [
     new webpack.ProvidePlugin({
