@@ -3,7 +3,7 @@
   <div class="shop-list-wrap">
     <map-search :to-list="false"></map-search>
     <div class="shop-list">
-      <shop-item v-for="item in shopList" :data="item"></shop-item>
+      <shop-item v-for="item in shopList" :data="item" @on-click="goDetail"></shop-item>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ const shopList = Array.from({length: 20}).map((v, i) => {
     name: Random.cword(4, 15),
     distance: Random.integer(1, 1100) + 'm',
     borrowNum: Random.integer(0, 10),
-    return: Random.integer(0, 10),
+    returnNum: Random.integer(0, 10),
     isOnline: Random.boolean(),
     address: Random.county(true) + Random.cword(3, 10)
   }
@@ -27,6 +27,13 @@ export default {
   data () {
     return {
       shopList: shopList
+    }
+  },
+  methods: {
+    goDetail () {
+      this.$router.push({
+        name: 'shopDetail'
+      })
     }
   },
   components: {

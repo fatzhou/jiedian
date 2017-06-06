@@ -1,5 +1,5 @@
 <template>
-  <div class="shop-item">
+  <div class="shop-item" @click="click">
     <div class="logo">
       <img src="../../../assets/logo.jpg" alt="">
     </div>
@@ -33,6 +33,11 @@ export default {
   name: 'shop-item',
   props: {
     data: Object
+  },
+  methods: {
+    click () {
+      this.$emit('on-click')
+    }
   }
 }
 </script>
