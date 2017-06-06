@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
-       <router-view class="router-view"></router-view>
-     </transition>
-     <spinner type="android" v-if="isLoading"></spinner>
+    <!--<transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">-->
+    <router-view class="router-view"></router-view>
+     <!--</transition>-->
+     <!--<spinner type="android" v-if="isLoading"></spinner>-->
   </div>
 </template>
 

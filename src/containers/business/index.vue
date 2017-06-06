@@ -14,6 +14,11 @@
     </router-link>
   </div>
 </template>
+<script>
+export default {
+  
+}
+</script>
 <style media="screen" lang="less">
 .business-wrap{
   .section{
