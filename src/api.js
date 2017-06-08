@@ -49,3 +49,16 @@ export function apiOrderList () {
     a: 'order_list'
   })
 }
+
+/**
+ * 获取周边店铺地址位置及信息
+ * http://byjiedian.com/index.php?m=byjie&a=get_pos 
+ */
+export function apiNearShop (lat, lng) {
+  return get(rootUrl, {
+    m: 'byjie',
+    a: 'get_pos',
+    lat,
+    lng
+  })
+}

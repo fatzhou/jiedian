@@ -16,9 +16,10 @@
   </div>
 </template>
 <script>
-import { modifyTitle, wxRegister } from 'utils'
+import { modifyTitle, wxRegister, toString } from 'utils'
 import { Loading } from 'vux'
 import { MapSearch } from '@/components'
+import { apiNearShop } from 'api'
 
 export default {
   data () {
@@ -50,7 +51,18 @@ export default {
           success (res) {
             self.show = true
             self.showLoading = false
-            self.map.setZoomAndCenter(14, [res.longitude, res.latitude]);
+            self.map.setZoomAndCenter(12, [res.longitude, res.latitude])
+            apiNearShop(res.latitude, res.longitude).then((res) => {
+              const markers = res.data
+              
+              markers.forEach((m) => {
+                let marker = new AMap.Marker({
+                  icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+                  position: [m.lng, m.lat]
+                })
+                marker.setMap(self.map)
+              })
+            })
           }
         })
       })
