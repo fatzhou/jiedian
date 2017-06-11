@@ -3,7 +3,7 @@
   <div class="shop-list-wrap">
     <map-search :to-list="false"></map-search>
     <div class="shop-list">
-      <shop-item v-for="item in shopList" :data="item" @on-click="goDetail"></shop-item>
+      <shop-item v-for="item in shopList" :data="item" @on-click="goDetail" :key="item.name"></shop-item>
     </div>
   </div>
 </template>

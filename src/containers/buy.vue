@@ -1,12 +1,12 @@
 <template>
   <div class="return-wrap">
     <div class="logo">
-      <img src="../assets/GUIZI.png" alt="">
+      <img src="../assets/elect.jpg" alt="">
     </div>
     <divider class="divider">使用方法</divider>
-    <p class="tips">1.点击<span>扫码还充电宝</span>，然后扫描柜机上的二维码。</p>
-    <p class="tips">2.将充电宝<span style="font-weight: bold; color: #212121">正面朝左</span>，插入系统指定分配的卡槽归还。</p>
-    <x-button :active="true" class="return-button">扫码还充电宝</x-button>
+    <p class="tips">1.点击<span>扫码购买充电宝</span>，扫描柜机上的二维码支付购买。</p>
+    <p class="tips">2.充电宝售价&yen;80/台</p>
+    <x-button :active="true" class="return-button">扫码购买充电宝</x-button>
   </div>
 </template>
 
@@ -39,6 +39,9 @@ export default {
   .logo{
     text-align: center;
     margin-top: 32px;
+    img{
+      width: 200rpx;
+    }
   }
   .divider{
     width: 50%;
