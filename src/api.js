@@ -62,3 +62,14 @@ export function apiNearShop (lat, lng) {
     lng
   })
 }
+
+/**
+ * 押金充值100
+ * https://byjiedian.com/index.php?m=byjie&a=get_pay
+ */
+export function apiRecharge () {
+  return get(rootUrl, {
+    m: 'byjie',
+    a: 'get_pay'
+  })
+}

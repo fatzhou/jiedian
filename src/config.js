@@ -6,5 +6,6 @@ export const jsApiList = [
   'onMenuShareQZone',
   'openLocation',
   'getLocation',
-  'scanQRCode'
+  'scanQRCode',
+  'chooseWXPay'
 ]

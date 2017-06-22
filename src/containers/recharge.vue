@@ -29,7 +29,8 @@
 <script>
 import { XButton } from '@/components'
 import { Divider } from 'vux'
-import { modifyTitle } from 'utils'
+import { modifyTitle, wxRegister } from 'utils'
+import { apiRecharge } from 'api'
 
 export default {
   data() {
@@ -37,10 +38,25 @@ export default {
     };
   },
   created () {
-    modifyTitle('充值')
+    modifyTitle('充值11')
+    alert(location.href)
+    wxRegister(location.href)
   },
   methods: {
     recharge () {
+      apiRecharge().then((res) => {
+        res = res.data
+        wx.chooseWXPay({
+          timestamp: res.jsApiParameters.timeStamp,
+          nonceStr: res.jsApiParameters.nonceStr,
+          package: res.jsApiParameters.package,
+          signType: res.jsApiParameters.signType,
+          paySign: res.jsApiParameters.paySign,
+          success (res) {
+            alert(JSON.stringify(res))
+          }
+        })
+      })
       this.$router.push({
         name: 'commonReply',
         params: {
