@@ -34,7 +34,7 @@ export function wxRegister (url) {
   json.then((res) => {
     const data = res.data
     const config = {
-      debug: true,
+      debug: false,
       appId: data.appId,
       timestamp: data.timestamp+'',
       nonceStr: data.nonceStr,
