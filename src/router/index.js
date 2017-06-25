@@ -1,11 +1,15 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
+import NotFoundComponent from '@/containers/notFound'
 
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+  mode: 'history',
+  base: '/index.php/byjie/index',
   routes: [
+    { path: '*', component: NotFoundComponent },
     {
       path: '/business',
       name: 'business',

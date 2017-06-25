@@ -100,6 +100,7 @@ export default {
     margin-top: 8px;
     text-align: center;
     color: #212121;
+    font-size: 16rpx;
   }
   .amount{
     margin-top: 12px;

@@ -2,7 +2,7 @@
   <!-- 交易记录 -->
   <div class="trade-list-wrap">
     <div class="header">
-      充值 &yen;600 提现 &yen;300
+      充值 &yen;{{recharge}} 提现 &yen;{{take}}
     </div>
     <div class="content">
       <item :data="item" v-for="item in list" :key="item.code"></item>
@@ -14,6 +14,7 @@
 import { Scroller } from 'vux'
 import Item from './sub/trade.item'
 import { modifyTitle } from 'utils'
+import { apiTradeList } from 'api'
 
 const time = utils.now()
 const list = Array.from({length: 20}).map((v, i) => {
@@ -29,13 +30,25 @@ const list = Array.from({length: 20}).map((v, i) => {
 export default {
   data() {
     return {
-      list: list
+      list: [],
+      recharge: '',
+      take: ''
     };
   },
   created() {
     modifyTitle('交易记录')
+    this.getTradeList()
   },
-  methods: {},
+  methods: {
+    getTradeList () {
+      apiTradeList().then((res) => {
+        res = res.data
+        this.list = res.data
+        this.recharge = res.recharge
+        this.take = res.take
+      })
+    }
+  },
   components: {
     Item,
     Scroller

@@ -158,7 +158,7 @@ export function base64encode(str){
  * base64解码
  * @param {Object} str
  */
-export function base64decode(str){
+export function base64decode (str) {
     var c1, c2, c3, c4;
     var i, len, out;
     len = str.length;

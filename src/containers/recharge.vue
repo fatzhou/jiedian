@@ -30,38 +30,44 @@
 import { XButton } from '@/components'
 import { Divider } from 'vux'
 import { modifyTitle, wxRegister } from 'utils'
-import { apiRecharge } from 'api'
+import { apiRecharge, apiCheckPay } from 'api'
 
 export default {
   data() {
     return {
+      orderNo: ''
     };
   },
   created () {
-    modifyTitle('充值11')
-    alert(location.href)
+    modifyTitle('充值')
     wxRegister(location.href)
   },
   methods: {
     recharge () {
+      const self = this
       apiRecharge().then((res) => {
         res = res.data
+        this.orderNo = res.data.out_trade_no
         wx.chooseWXPay({
           timestamp: res.jsApiParameters.timeStamp,
           nonceStr: res.jsApiParameters.nonceStr,
           package: res.jsApiParameters.package,
           signType: res.jsApiParameters.signType,
           paySign: res.jsApiParameters.paySign,
-          success (res) {
-            alert(JSON.stringify(res))
+          success: function (res) {
+            self.checkPay()
           }
         })
       })
-      this.$router.push({
-        name: 'commonReply',
-        params: {
-          type: 'recharge'
-        }
+    },
+    checkPay () {
+      apiCheckPay(this.orderNo).then((res) => {
+        this.$router.push({
+          name: 'commonReply',
+          params: {
+            type: 'recharge'
+          }
+        })
       })
     }
   },
