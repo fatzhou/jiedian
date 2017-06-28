@@ -7,14 +7,14 @@
         <!--<i class="iconfont icon-jinbi"></i>-->
       </div>
       <p class="msg">可提现余额</p>
-      <p class="amount">&yen;288.00</p>
+      <p class="amount">&yen;{{user.amout}}</p>
     </div>
     
     <div class="content">
       <input-cell title="提现金额" placeholder="请输入提现金额" class="input-cell-last" :value.sync="amount"></input-cell>
     </div>
     
-    <x-button :active="canClick" @on-click="show.confirm = true">提现</x-button>
+    <x-button :active="canClick" @on-click="preDeposit">提现</x-button>
     
     <divider>温馨提示</divider>
 
@@ -34,6 +34,8 @@
 import { InputCell, XButton } from '@/components'
 import { Confirm, Divider } from 'vux'
 import { modifyTitle } from 'utils'
+import { apiDeposit, apiUserInfo } from 'api'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -41,11 +43,13 @@ export default {
       amount: '',
       show: {
         confirm: false
-      }
+      },
+      user: {}
     }
   },
   created () {
     modifyTitle('提现')
+    this.getUserInfo()
   },
   computed: {
     canClick() {
@@ -53,21 +57,41 @@ export default {
         return true
       }
       return false
-    }
+    },
   },
-  ready() {},
-  attached() {},
   methods: {
+    getUserInfo () {
+      apiUserInfo().then((res) => {
+        res = res.data
+        if (res.errcode === 0) {
+          this.user = res.data
+        }
+      })
+    },
+    preDeposit () {
+      if (isNaN(this.amount)) {
+        alert('请输入合法提现金额')
+        return
+      }
+      if (this.amount > 200) {
+        alert('提现金额不能超过余额')
+        return 
+      }
+      this.show.confirm = true
+    },
     confirmDeposit() {
       if (!this.canClick) {
         return 
       }
-      this.$router.push({
-        name: 'commonReply',
-        params: {
-          type: 'deposit'
-        }
+      apiDeposit(this.amount).then((res) => {
+        console.log(res)
       })
+      // this.$router.push({
+      //   name: 'commonReply',
+      //   params: {
+      //     type: 'deposit'
+      //   }
+      // })
     }
   },
   components: {

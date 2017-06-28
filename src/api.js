@@ -79,3 +79,13 @@ export function apiCheckPay (order_no) {
     order_no
   })
 }
+
+/**
+ * 退款提现
+ * http://www.byjiedian.com/index.php/byjie/check_pay/B062310826794157237386948
+ */
+export function apiDeposit (amount) {
+  return get(rootUrl + '/refund', {
+    amount
+  })
+}
