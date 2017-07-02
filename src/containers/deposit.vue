@@ -7,7 +7,7 @@
         <!--<i class="iconfont icon-jinbi"></i>-->
       </div>
       <p class="msg">可提现余额</p>
-      <p class="amount">&yen;{{user.amout}}</p>
+      <p class="amount">&yen;{{amount}}</p>
     </div>
     
     <div class="content">
@@ -34,7 +34,7 @@
 import { InputCell, XButton } from '@/components'
 import { Confirm, Divider } from 'vux'
 import { modifyTitle } from 'utils'
-import { apiDeposit, apiUserInfo } from 'api'
+import { apiDeposit, apiUserInfo, apiGetBalance } from 'api'
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -49,7 +49,7 @@ export default {
   },
   created () {
     modifyTitle('提现')
-    this.getUserInfo()
+    this.getBalance()
   },
   computed: {
     canClick() {
@@ -60,6 +60,14 @@ export default {
     },
   },
   methods: {
+    getBalance () {
+      apiGetBalance().then(res => {
+        res = res.data
+        if (res.errcode === 0) {
+          this.amount = res.data.amount
+        }
+      })
+    },
     getUserInfo () {
       apiUserInfo().then((res) => {
         res = res.data
@@ -84,14 +92,18 @@ export default {
         return 
       }
       apiDeposit(this.amount).then((res) => {
-        console.log(res)
+        res = res.data
+        if (res.errcode === 0) {
+          this.$router.push({
+            name: 'commonReply',
+            params: {
+              type: 'deposit'
+            }
+          })
+        } else {
+          alert(res.errmsg)
+        }
       })
-      // this.$router.push({
-      //   name: 'commonReply',
-      //   params: {
-      //     type: 'deposit'
-      //   }
-      // })
     }
   },
   components: {

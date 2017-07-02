@@ -20,16 +20,16 @@
 
     <div class="section">
       <div class="title">
-        <span class="text">已赚到了5位朋友的提成金</span>
+        <span class="text">已赚到了{{friendList.length}}位朋友的提成金</span>
       </div>
       <div class="content">
         <ul class="friends">
           <li class="friend" v-for="friend in friendList" :key="friend.id">
             <i class="avatar">
-              <img :src="friend.img" alt="">
+              <img :src="friend.head" alt="">
             </i>
             <div class="detail">
-              <p class="name">{{friend.name}}</p>
+              <p class="name">{{friend.username}}</p>
               <p class="time">{{friend.time}}</p>
             </div>
             <div class="amount">
@@ -48,6 +48,7 @@
 <script>
 import { XButton } from '@/components'
 import { modifyTitle } from 'utils'
+import { apiFriendList } from 'api'
 
 const time = utils.now()
 const list = Array.from({length: 5}).map((v, i) => {
@@ -63,16 +64,32 @@ const list = Array.from({length: 5}).map((v, i) => {
 export default {
   data() {
     return {
-      friendList: list,
+      friendList: [],
       showShare: false
     }
   },
   created () {
     modifyTitle('推荐好友')
+    this.getFriendList()
   },
   methods: {
     toggleShare() {
       this.showShare = !this.showShare
+    },
+    getFriendList () {
+      apiFriendList().then(res => {
+        res = res.data
+        if (res.errcode === 0) {
+          this.friendList = res.data.map(item => {
+            return {
+              head: item.headimgurl.replace(/\\/, ''),
+              username: item.username,
+              amount: item.amount,
+              time: item.time
+            }
+          })
+        }
+      })
     }
   },
   components: {
@@ -84,6 +101,7 @@ export default {
 <style lang="less">
 .recommend-wrap{
   background-color: #fff;
+  padding-bottom: 20px;
   .header{
     position: relative;
     overflow: hidden;

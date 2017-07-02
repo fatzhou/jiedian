@@ -19,6 +19,7 @@ import { Tab, TabItem } from 'vux'
 import BorrowedItem from './sub/borrowed.item'
 import BorrowingItem from './sub/borrowing.item'
 import { modifyTitle } from 'utils'
+// import { apiAgentTrade } from 'api'
 
 const time = utils.now()
 const list = Array.from({ length: 20 }).map((v, i) => {
@@ -50,6 +51,14 @@ export default {
   methods: {
     onItemClick() {
       this.listType = !this.listType
+    },
+    getTradeList () {
+      apiAgentTrade().then(res => {
+        res = res.data
+        if (res.errcode === 0) {
+          
+        }
+      })
     }
   }
 }

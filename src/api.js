@@ -89,3 +89,24 @@ export function apiDeposit (amount) {
     amount
   })
 }
+
+/**
+ * 获取当前余额
+ */
+export function apiGetBalance () {
+  return get(rootUrl + '/get_balance')
+}
+
+/**
+ * 推荐好友列表
+ */
+export function apiFriendList () {
+  return get(rootUrl + '/get_agent_trade')
+}
+
+/**
+ * 推荐二维码
+ */
+export function apiTuijianQrcode () {
+  return get(rootUrl + '/get_qrcode')
+}

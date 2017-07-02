@@ -94,6 +94,11 @@ const router = new VueRouter({
       path: '/map',
       name: 'map',
       component: r => require.ensure([], () => r(require('@/containers/near/map.vue')), 'map')
+    },
+    {
+      path: '/qrcode',
+      name: 'qrcode',
+      component: r => require.ensure([], () => r(require('@/containers/qrcode.vue')), 'qrcode')
     }
   ]
 });
