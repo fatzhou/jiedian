@@ -47,19 +47,8 @@
 
 <script>
 import { XButton } from '@/components'
-import { modifyTitle } from 'utils'
+import { modifyTitle, wxRegister } from 'utils'
 import { apiFriendList } from 'api'
-
-const time = utils.now()
-const list = Array.from({length: 5}).map((v, i) => {
-  return {
-    id: i,
-    img: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1367335817,1439176924&fm=117&gp=0.jpg',
-    name: ['哈哈明', '胡良智', '徐志雷', '月夜枫'].find((v, k)=> {return k === Math.round(Math.random() * 3)}),
-    time,
-    amount: Math.round(Math.random() * 100)
-  }
-})
 
 export default {
   data() {
@@ -71,6 +60,8 @@ export default {
   created () {
     modifyTitle('推荐好友')
     this.getFriendList()
+    wxRegister(location.href)
+    this.share()
   },
   methods: {
     toggleShare() {
@@ -89,6 +80,22 @@ export default {
             }
           })
         }
+      })
+    },
+    share () {
+      const self = this
+      wx.ready(function() {
+        const params = {
+          title: '您的好友邀请您加入BY街电',
+          desc: '免费注册BY街电，方便使用共享充电宝',
+          link: 'http://www.byjiedian.com/index.php/byjie/index/qrcode',
+          imgUrl: 'http://www.byjiedian.com/static/img/logo.jpg'
+        }
+        wx.onMenuShareTimeline(params)
+        wx.onMenuShareAppMessage(params)
+        wx.onMenuShareQQ(params)
+        wx.onMenuShareWeibo(params)
+        wx.onMenuShareQZone(params)
       })
     }
   },

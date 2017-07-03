@@ -29,7 +29,7 @@
       <cell title="帮助中心" is-link link="/help">
         <i class="iconfont icon-information" slot="icon"></i>
       </cell>
-      <cell title="推荐好友赚提成" is-link link="/recommend">
+      <cell title="推荐好友赚提成" is-link link="http://www.byjiedian.com/index.php/byjie/index/recommend">
         <i class="iconfont icon-elite" slot="icon"></i>
       </cell>
     
