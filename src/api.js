@@ -110,3 +110,10 @@ export function apiFriendList () {
 export function apiTuijianQrcode () {
   return get(rootUrl + '/get_qrcode')
 }
+
+/**
+ * 租借记录
+ */
+export function apiRentList () {
+  return get(rootUrl + '/rent_list')
+}

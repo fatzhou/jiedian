@@ -20,7 +20,7 @@
 
     <div class="section">
       <div class="title">
-        <span class="text">已赚到了{{friendList.length}}位朋友的提成金</span>
+        <span class="text">已赚到了{{friendNum}}位朋友的提成金</span>
       </div>
       <div class="content">
         <ul class="friends">
@@ -38,7 +38,9 @@
           </li>
         </ul>
       </div>
-
+      <router-link tag="p" class="check-more" :to="{ name: 'morefriends'}">
+        查看更多明细>
+      </router-link>
     </div>
 
     <div class="share-mask" v-if="showShare" @click="toggleShare"></div>
@@ -71,7 +73,7 @@ export default {
       apiFriendList().then(res => {
         res = res.data
         if (res.errcode === 0) {
-          this.friendList = res.data.map(item => {
+          const _list = res.data.map(item => {
             return {
               head: item.headimgurl.replace(/\\/, ''),
               username: item.username,
@@ -79,6 +81,8 @@ export default {
               time: item.time
             }
           })
+          this.friendNum = _list.length
+          this.friendList = _list.slice(0, 5)
         }
       })
     },
@@ -209,6 +213,13 @@ export default {
       line-height: 48px;
       font-size: 16rpx;
     }
+  }
+  .check-more{
+    width: 100%;
+    text-align: right;
+    color: #0085EE;
+    text-decoration: underline;
+    font-size: 14rpx;
   }
   .share-mask{
     position: fixed;

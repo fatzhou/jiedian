@@ -2,22 +2,22 @@
   <!--租借进行中-->
   <div class="borrowing-item-wrap">
     <div class="header">
-      <div class="code">订单号：{{data.code}}</div>
+      <div class="code">订单号：{{data.ord_id}}</div>
       <div class="sign">进行中</div>
     </div>
     <div class="content">
       <div class="money">
-        <div class="amount"><small>&yen;</small>{{data.money}}</div>
+        <div class="amount"><small>&yen;</small>{{data.amount}}</div>
         <div class="tips">产生费用</div>
       </div>
       <div class="detail">
         <p class="borrow-site">
           <label>租借时间</label>
-          <span>{{data.time}}</span>
+          <span>{{data.rtime}}</span>
         </p>
         <p class="borrow-time">
           <label>租借地点</label>
-          <span>麻辣1号</span>
+          <span>{{data.rent}}</span>
         </p>
       </div>
     </div>

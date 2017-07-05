@@ -19,7 +19,7 @@ import { Tab, TabItem } from 'vux'
 import BorrowedItem from './sub/borrowed.item'
 import BorrowingItem from './sub/borrowing.item'
 import { modifyTitle } from 'utils'
-// import { apiAgentTrade } from 'api'
+import { apiRentList } from 'api'
 
 const time = utils.now()
 const list = Array.from({ length: 20 }).map((v, i) => {
@@ -35,12 +35,13 @@ export default {
     return {
       // true 租借中  false 已完成
       listType: true,
-      borrowingList: list,
-      borrowedList: list
+      borrowingList: [],
+      borrowedList: []
     }
   },
   created () {
     modifyTitle('租借记录')
+    this.getTradeList()
   },
   components: {
     Tab,
@@ -53,10 +54,15 @@ export default {
       this.listType = !this.listType
     },
     getTradeList () {
-      apiAgentTrade().then(res => {
+      apiRentList().then(res => {
         res = res.data
         if (res.errcode === 0) {
-          
+          this.borrowingList = res.data.filter(item => {
+            return item.status === 1
+          })
+          this.borrowedList = res.data.filter(item => {
+            return item.status === 2
+          })
         }
       })
     }
@@ -64,7 +70,4 @@ export default {
 }
 </script>
 <style lang="less">
-.borrow-list-wrap{
-
-}
 </style>

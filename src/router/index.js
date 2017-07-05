@@ -71,6 +71,11 @@ const router = new VueRouter({
       component: r => require.ensure([], () => r(require('@/containers/recommend.vue')), 'recommend')
     },
     {
+      path:'/morefriends',
+      name: 'morefriends',
+      component: r => require.ensure([], () => r(require('@/containers/more.friends.vue')), 'morefriends')
+    },
+    {
       path: '/buy',
       name: 'buy',
       component: r => require.ensure([], () => r(require('@/containers/buy')), 'buy')
