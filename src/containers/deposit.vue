@@ -7,7 +7,7 @@
         <!--<i class="iconfont icon-jinbi"></i>-->
       </div>
       <p class="msg">可提现余额</p>
-      <p class="amount">&yen;{{amount}}</p>
+      <p class="amount">&yen;{{balance}}</p>
     </div>
     
     <div class="content">
@@ -25,7 +25,7 @@
       <p>4. 如有疑问，请点击“帮助中心”了解；</p>
     </div>
     <confirm title="确认提现" v-model="show.confirm" @on-confirm="confirmDeposit">
-      确认提现{{amount}}吗？该操作不可撤销
+      确认提现{{amount}}元吗？该操作不可撤销
     </confirm>
   </div>
 </template>
@@ -40,6 +40,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
   data() {
     return {
+      balance: '',
       amount: '',
       show: {
         confirm: false
@@ -64,7 +65,7 @@ export default {
       apiGetBalance().then(res => {
         res = res.data
         if (res.errcode === 0) {
-          this.amount = res.data.amount
+          this.balance = res.data.amount
         }
       })
     },

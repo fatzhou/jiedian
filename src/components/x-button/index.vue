@@ -14,7 +14,9 @@ export default {
   },
   methods: {
     click() {
-      this.$emit('on-click')
+      if (this.active) {
+        this.$emit('on-click')
+      }
     }
   }
 }
