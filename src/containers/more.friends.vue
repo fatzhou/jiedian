@@ -4,7 +4,7 @@
       <p>可兑换金额</p>
       <div class="amount">&yen;{{balance}}</div>
       <div class="data-asy">
-        <span>累计(人) {{friendList.length}}</span>
+        <span>累计(人) {{friendsNum}}</span>
         <span>累计 &yen;{{friendsMoney}}</span>
       </div>
       <router-link :to="{ name: 'deposit'}">
@@ -39,9 +39,10 @@ import { apiFriendList } from 'api'
 export default {
   data () {
     return {
-      balance: '90',
+      balance: '',
       friendList: [],
-      friendsMoney: 0
+      friendsMoney: 0,
+      friendsNum: ''
     }
   },
   created () {
@@ -53,8 +54,7 @@ export default {
       apiFriendList().then(res => {
         res = res.data
         if (res.errcode === 0) {
-          this.friendList = res.data.map(item => {
-            this.friendsMoney = this.friendsMoney + parseInt(item.amount)
+          this.friendList = res.data.list.map(item => {
             return {
               head: item.headimgurl.replace(/\\/, ''),
               username: item.username,
@@ -62,6 +62,9 @@ export default {
               time: item.time
             }
           })
+          this.friendsNum = res.data.total
+          this.balance = res.data.balance
+          this.friendsMoney = res.data.num
         }
       })
     },
@@ -87,14 +90,16 @@ export default {
     .data-asy{
       margin: 12px auto;
       width: 60%;
-      display: flex;
+      font-size: 0;
       span{
-        flex: 1;
+        display: inline-block;
         text-align: center;
         font-size: 14rpx;
         color: #999;
+        width: 50%;
       }
       span:first-child{
+        width: 48%;
         border-right: 1rpx solid #999;
       }
     }

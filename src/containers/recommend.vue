@@ -73,7 +73,7 @@ export default {
       apiFriendList().then(res => {
         res = res.data
         if (res.errcode === 0) {
-          const _list = res.data.map(item => {
+          const _list = res.data.list.map(item => {
             return {
               head: item.headimgurl.replace(/\\/, ''),
               username: item.username,
@@ -81,7 +81,7 @@ export default {
               time: item.time
             }
           })
-          this.friendNum = _list.length
+          this.friendNum = res.data.total
           this.friendList = _list.slice(0, 5)
         }
       })
