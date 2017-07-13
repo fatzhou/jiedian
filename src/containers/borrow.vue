@@ -1,12 +1,10 @@
 <template lang="html">
   <div class="borrow-wrap">
     <div class="logo">
-      <!--<img src="../assets/GUIZI.png" alt="">-->
       <img src="../assets/elect.jpg" alt="">
     </div>
     <divider class="divider">使用方法</divider>
     <p class="tips">点击<span>扫码借充电宝</span>，然后扫描柜机上的二维码</p>
-    <!--<div class="button">扫码借充电宝</div>-->
     <x-button :active="true" class="borrow-button" @on-click="scanQrcode">扫码借充电宝</x-button>
   </div>
 </template>
