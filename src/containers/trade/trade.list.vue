@@ -1,12 +1,13 @@
 <template>
   <!-- 交易记录 -->
   <div class="trade-list-wrap">
-    <div class="header">
+    <div class="header" v-if="list.length">
       充值 &yen;{{recharge}} 提现 &yen;{{take}}
     </div>
-    <div class="content">
+    <div class="content" v-if="list.length">
       <item :data="item" v-for="item in list" :key="item.code"></item>
     </div>
+    <no-data v-if="!list.length"></no-data>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import { Scroller } from 'vux'
 import Item from './sub/trade.item'
 import { modifyTitle } from 'utils'
 import { apiTradeList } from 'api'
+import NoData from '../common/nodata'
 
 const time = utils.now()
 const list = Array.from({length: 20}).map((v, i) => {
@@ -43,15 +45,20 @@ export default {
     getTradeList () {
       apiTradeList().then((res) => {
         res = res.data
-        this.list = res.data
-        this.recharge = res.recharge
-        this.take = res.take
+        if (res.errcode === 0 && res.data) {
+          this.list = res.data
+          this.recharge = res.recharge
+          this.take = res.take
+        } else {
+          this.list = []
+        }
       })
     }
   },
   components: {
     Item,
-    Scroller
+    Scroller,
+    NoData
   }
 };
 </script>

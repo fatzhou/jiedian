@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="borrow-wrap">
     <div class="logo">
-      <img src="../assets/elect.jpg" alt="">
+      <img src="http://ob3wg7deo.bkt.clouddn.com/chongdian.png" alt="">
     </div>
     <divider class="divider">使用方法</divider>
     <p class="tips">点击<span>扫码借充电宝</span>，然后扫描柜机上的二维码</p>
@@ -51,7 +51,7 @@ export default {
     text-align: center;
     margin-top: 32px;
     img{
-      width: 200rpx;
+      width: 350rpx;
     }
   }
   .divider{

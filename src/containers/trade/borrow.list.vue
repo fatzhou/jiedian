@@ -5,12 +5,14 @@
       <tab-item selected @on-item-click="onItemClick">进行中</tab-item>
       <tab-item @on-item-click="onItemClick">已完成</tab-item>
     </tab>
-
+    
     <div class="borrowing" v-if="listType">
-      <borrowing-item v-for="item in borrowingList" :data="item" :key="item.code"></borrowing-item>
+      <borrowing-item v-for="item in borrowingList" :data="item" :key="item.code" v-if="borrowingList.length"></borrowing-item>
+       <no-data v-if="!borrowingList.length"></no-data> 
     </div>
-    <div class="borrowed" v-if="!listType">
-      <borrowed-item v-for="item in borrowedList" :data="item" :key="item.code"></borrowed-item>
+    <div class="borrowed" v-if="!listType && !nodata">
+      <borrowed-item v-for="item in borrowedList" :data="item" :key="item.code" v-if="borrowedList.length"></borrowed-item>
+      <no-data v-if="!borrowedList.length"></no-data>
     </div>
   </div>
 </template>
@@ -18,8 +20,10 @@
 import { Tab, TabItem } from 'vux'
 import BorrowedItem from './sub/borrowed.item'
 import BorrowingItem from './sub/borrowing.item'
+import NoData from '../common/nodata'
 import { modifyTitle } from 'utils'
 import { apiRentList } from 'api'
+
 
 const time = utils.now()
 const list = Array.from({ length: 20 }).map((v, i) => {
@@ -36,7 +40,8 @@ export default {
       // true 租借中  false 已完成
       listType: true,
       borrowingList: [],
-      borrowedList: []
+      borrowedList: [],
+      nodata: false
     }
   },
   created () {
@@ -47,7 +52,8 @@ export default {
     Tab,
     TabItem,
     BorrowedItem,
-    BorrowingItem
+    BorrowingItem,
+    NoData
   },
   methods: {
     onItemClick() {

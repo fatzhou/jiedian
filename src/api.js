@@ -107,8 +107,10 @@ export function apiFriendList () {
 /**
  * 推荐二维码
  */
-export function apiTuijianQrcode () {
-  return get(rootUrl + '/get_qrcode')
+export function apiTuijianQrcode (openid) {
+  return get(rootUrl + '/get_qrcode', {
+    openid: openid
+  })
 }
 
 /**

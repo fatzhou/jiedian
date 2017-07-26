@@ -19,7 +19,8 @@ export default {
   data () {
     return {
       // imgUrl: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58'
-      imgUrl: ''
+      imgUrl: '',
+      openid: ''
     }
   },
   created () {
@@ -27,7 +28,8 @@ export default {
   },
   methods: {
     getQrcode () {
-      apiTuijianQrcode().then(res => {
+      const openid = this.$route.query.id
+      apiTuijianQrcode(openid).then(res => {
         res = res.data
         if (res.errcode === 0) {
           this.imgUrl = res.data.url

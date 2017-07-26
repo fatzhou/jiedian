@@ -18,9 +18,9 @@
       </div>
     </div>
 
-    <div class="section">
+    <div class="section" v-if="showFriends">
       <div class="title">
-        <span class="text">已赚到了{{friendNum}}位朋友的提成金</span>
+        <span class="text">已成功邀请{{friendNum}}位好友关注</span>
       </div>
       <div class="content">
         <ul class="friends">
@@ -42,6 +42,11 @@
         查看更多明细>
       </router-link>
     </div>
+    <div class="section" v-if="!showFriends">
+      <div class="title">
+        <span class="text">赶快推荐好友使用！</span>
+      </div>
+    </div>
 
     <div class="share-mask" v-if="showShare" @click="toggleShare"></div>
   </div>
@@ -50,29 +55,40 @@
 <script>
 import { XButton } from '@/components'
 import { modifyTitle, wxRegister } from 'utils'
-import { apiFriendList } from 'api'
+import { apiFriendList, apiUserInfo } from 'api'
 
 export default {
   data() {
     return {
       friendList: [],
-      showShare: false
+      showShare: false,
+      openid: '',
+      showFriends: false
     }
   },
   created () {
     modifyTitle('推荐好友')
-    this.getFriendList()
     wxRegister(location.href)
+    this.getOpenid()
+    this.getFriendList()
     this.share()
   },
   methods: {
     toggleShare() {
       this.showShare = !this.showShare
     },
+    getOpenid () {
+      apiUserInfo().then(res => {
+        res = res.data
+        if (res.errcode === 0) {
+          this.openid = res.data.openid
+        }
+      })
+    },
     getFriendList () {
       apiFriendList().then(res => {
         res = res.data
-        if (res.errcode === 0) {
+        if (res.errcode === 0 && res.data.list) {
           const _list = res.data.list.map(item => {
             return {
               head: item.headimgurl.replace(/\\/, ''),
@@ -81,8 +97,11 @@ export default {
               time: item.time
             }
           })
+          this.showFriends = true
           this.friendNum = res.data.total
           this.friendList = _list.slice(0, 5)
+        } else {
+          this.showFriends = false
         }
       })
     },
@@ -92,7 +111,7 @@ export default {
         const params = {
           title: '您的好友邀请您加入BY街电',
           desc: '免费注册BY街电，方便使用共享充电宝',
-          link: 'http://www.byjiedian.com/index.php/byjie/index/qrcode',
+          link: `http://www.byjiedian.com/index.php/byjie/index/qrcode?id=${self.openid}`,
           imgUrl: 'http://www.byjiedian.com/static/img/logo.jpg'
         }
         wx.onMenuShareTimeline(params)
@@ -113,6 +132,7 @@ export default {
 .recommend-wrap{
   background-color: #fff;
   padding-bottom: 20px;
+  height: 100%;
   .header{
     position: relative;
     overflow: hidden;

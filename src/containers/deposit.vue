@@ -102,7 +102,7 @@ export default {
             }
           })
         } else {
-          alert(res.errmsg)
+          alert(res.msg)
         }
       })
     }
