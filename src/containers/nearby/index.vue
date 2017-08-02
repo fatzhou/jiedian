@@ -33,6 +33,7 @@ export default {
     wxRegister(location.href)
   },
   mounted () {
+    alert('test')
     this.init()
     this.getLocation()
   },
@@ -40,11 +41,10 @@ export default {
     init () {
       this.map = new AMap.Map('container', {
         resizeEnable: true,
-        zoom:12,
+        zoom:14,
       })
     },
     getLocation () {
-      alert(3)
       const self = this
       wx.ready(() => {
         wx.getLocation({
@@ -52,11 +52,10 @@ export default {
           success (res) {
             self.show = true
             self.showLoading = false
-            alert(4);
             console.log(res, "经纬度信息")
             self.map.setZoomAndCenter(25, [res.longitude, res.latitude])
             apiNearShop(res.latitude, res.longitude).then((res) => {
-              const markers = res.data.data
+              const markers = res.data
               
               markers.forEach((m) => {
                 let marker = new AMap.Marker({
