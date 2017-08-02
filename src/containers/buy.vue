@@ -17,6 +17,7 @@ import { XButton } from '@/components'
 export default {
   data() {
     return {
+      "name": "buy"
     };
   },
   computed: {},

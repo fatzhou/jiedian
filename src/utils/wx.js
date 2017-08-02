@@ -44,3 +44,35 @@ export function wxRegister (url) {
     wx.config(config)
   })
 }
+
+/**
+ * 微信jssdk
+ * 微信注册url
+ */
+export function wxRegisterCallback (url, callback) {
+  const json = apiGetSign(base64encode(url))
+  json.then((res) => {
+    const data = res.data;
+    console.log(res.data,"res")
+    const config = {
+      debug: false,
+      appId: data.appId,
+      timestamp: data.timestamp+'',
+      nonceStr: data.nonceStr,
+      signature: data.signature,
+      jsApiList: jsApiList
+    }
+    console.log("wx config:", config);
+    wx.config(config);
+
+    wx.ready(function() {
+      console.log(333)
+    })
+
+    wx.error(function() {
+      console.log(444)
+    })
+
+    callback && (typeof callback === 'function') && callback();
+  })
+}
