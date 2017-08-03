@@ -8,7 +8,7 @@
       </div>
       <i class="iconfont icon-liebiao"></i>
     </div>-->
-    <map-search></map-search>
+    <map-search placeholder="搜索位置查找附近充电宝"></map-search>
 
     <!-- 地图container -->
     <div id="container"></div>

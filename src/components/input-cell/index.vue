@@ -11,7 +11,10 @@
 export default {
   props: {
     title: String,
-    placeholder: String,
+    placeholder: {
+      type: String,
+      default: ""
+    },
     value: [String, Number],
     disabled: {
       type: Boolean,

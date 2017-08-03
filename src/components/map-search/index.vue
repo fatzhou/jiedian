@@ -2,7 +2,7 @@
   <div class="search-wrap">
     <div class="input-wrap">
       <i class="iconfont icon-sousuo_sousuo"></i>
-      <input type="text" class="input">
+      <input type="text" :placeholder="placeholder" class="input">
     </div>
     <router-link to="/shop/list" class="to-list" v-if="toList">
       <i class="iconfont icon-liebiao"></i>
@@ -14,7 +14,11 @@ export default {
   props: {
     toList: {
       type: Boolean,
-      default: true
+      default: true,
+    },
+    placeholder: {
+      type: String,
+      default: "",
     }
   }
 }

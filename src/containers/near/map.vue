@@ -39,6 +39,7 @@ export default {
     }
   },
   created () {
+    modifyTitle("附近网点");
     wxRegister(location.href);
   },
   mounted () {
@@ -61,11 +62,22 @@ export default {
         resizeEnable: true,
         zoom: this.zoom,
       })
+
+      let self = this
+
+      AMap.plugin(['AMap.ToolBar','AMap.Scale','AMap.Geolocation'],
+          function(){
+              self.map.addControl(new AMap.ToolBar());
+
+              self.map.addControl(new AMap.Scale());
+
+              self.map.addControl(new AMap.Geolocation());
+      });
     },
     getLocation () {
       const self = this;
       console.log("Are you ready？？?")
->>>>>>> 5f1ef8cd2681264ff385f51e6501393ad5980762
+
       wx.ready(() => {
         console.log("I am ready");
         wx.getLocation({

@@ -46,6 +46,7 @@ export default {
   padding: 16rpx;
   background-color: #fff;
   display: flex;
+  border-bottom: 1px solid #ddd;
   .logo{
     width: 64rpx;
     height: 64rpx;
@@ -59,6 +60,7 @@ export default {
   .detail{
     margin-left: 16rpx;
     flex: 1;
+    width: 100px;
   }
   .shop-name{
     font-size: 14rpx;
@@ -73,11 +75,11 @@ export default {
   }
   .borrow{
     color: #0085EE;
-    margin-right: 8rpx;
+    margin-right: 12rpx;
   }
   .return{
     color: #00A282;
-    margin-right: 8rpx;
+    margin-right: 12rpx;
   }
   .icon-borrow, .icon-return{
     display: inline-block;
@@ -113,6 +115,10 @@ export default {
     color: #999999;
     font-size: 12rpx;
     margin-top: 4rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
   }
 }
 </style>
