@@ -91,6 +91,16 @@ export function apiDeposit (amount) {
 }
 
 /**
+ * 获取店铺详情
+ * http://www.byjiedian.com/index.php/byjie/check_pay/B062310826794157237386948
+ */
+export function apiShopDetail (id) {
+  return get(rootUrl + '/get_shop', {
+    id
+  })
+}
+
+/**
  * 获取当前余额
  */
 export function apiGetBalance () {

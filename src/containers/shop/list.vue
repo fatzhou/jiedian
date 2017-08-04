@@ -3,36 +3,53 @@
   <div class="shop-list-wrap">
     <map-search :to-list="false"></map-search>
     <div class="shop-list">
-      <shop-item v-for="item in shopList" :data="item" @on-click="goDetail" :key="item.name"></shop-item>
+      <shop-item v-for="item, index in shopList" :item="item" :index="index" @on-click="goDetail"></shop-item>
     </div>
   </div>
 </template>
 <script>
 import { MapSearch } from '@/components'
 import ShopItem from './sub/shop.item'
-import { Random } from 'mockjs'
-
-const shopList = Array.from({length: 20}).map((v, i) => {
-  return {
-    name: Random.cword(4, 15),
-    distance: Random.integer(1, 1100) + 'm',
-    borrowNum: Random.integer(0, 10),
-    returnNum: Random.integer(0, 10),
-    isOnline: Random.boolean(),
-    address: Random.county(true) + Random.cword(3, 10)
-  }
-})
-
+import { apiNearShop } from 'api'
+import { modifyTitle, wxRegister } from 'utils'
 export default {
   data () {
     return {
-      shopList: shopList
+      lat: 0,
+      long: 0,
+      shopList: []
     }
   },
+  created() {
+    modifyTitle("网点列表");
+    wxRegister(location.href);
+  },
+  mounted() {
+    //获取经纬度
+    wx.getLocation({
+      type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+      success:  (res)=> {
+          this.lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+          this.long = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+          this.getShopList();
+      }
+  });
+
+  },
   methods: {
-    goDetail () {
+    getShopList() {
+      apiNearShop(this.lat, this.long).then((res) => {
+        this.shopList = res.data.data;
+        console.log(res.data.data, "shoplist")
+      })
+    },
+    goDetail (id) {
+      console.log(arguments)
       this.$router.push({
-        name: 'shopDetail'
+        name: 'shopDetail',
+        params: {
+          id: id
+        }
       })
     }
   },

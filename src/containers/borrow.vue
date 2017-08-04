@@ -5,7 +5,7 @@
     </div>
     <divider class="divider">使用方法</divider>
     <p class="tips">点击<span>扫码借充电宝</span>，然后扫描柜机上的二维码</p>
-    <x-button :active="true" class="borrow-button"  @touchstart="scanQrcode">扫码借充电宝</x-button>
+    <x-button :active="true" class="borrow-button"  @on-click="scanQrcode">扫码借充电宝</x-button>
   </div>
 </template>
 
@@ -24,16 +24,16 @@ export default {
     modifyTitle('借充电宝');
 
     wxRegister(location.href);      
-
   },
   methods: {
     scanQrcode () {
-      alert("scan code!");
       wx.scanQRCode({
         needResult: 1,
-        scanType: ['qrCode'],
-        success (res) {
+        scanType: ["qrCode","barCode"],
+        success: (res)=> {
           let result = res.resultStr;
+          // this.handleCode(result);
+          alert(result);
         }
       });     
     }

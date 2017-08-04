@@ -14,6 +14,7 @@ export default {
   },
   methods: {
     click() {
+      console.log(this.active, "active");
       if (this.active) {
         this.$emit('on-click')
       }

@@ -5,17 +5,17 @@
     </div>
     <div class="detail">
       <div class="shop-name">
-        {{data.name}}
-        <span class="dis">{{data.distance}}</span>
+        {{item.name}}
+        <span class="dis">{{item.distance}}</span>
       </div>
       <div class="shop-status">
         <span class="borrow">
-          <i class="icon-borrow">借</i>{{data.borrowNum}}
+          <i class="icon-borrow">借</i>{{item.borrow}}
         </span>
         <span class="return">
-          <i class="icon-return">还</i>{{data.returnNum}}
+          <i class="icon-return">还</i>{{item.back}}
         </span>
-        <span class="state state-on" v-if="data.isOnline">
+        <span class="state state-on" v-if="item.online">
           设备在线
         </span>
          <span class="state state-off" v-else>
@@ -23,7 +23,7 @@
         </span>
       </div>
       <div class="shop-address">
-        {{data.address}}
+        {{item.address}}
       </div>
     </div>
   </div>
@@ -31,12 +31,10 @@
 <script>
 export default {
   name: 'shop-item',
-  props: {
-    data: Object
-  },
+  props: ["item", "index"],
   methods: {
     click () {
-      this.$emit('on-click')
+      this.$emit('on-click', this.item.id);
     }
   }
 }
