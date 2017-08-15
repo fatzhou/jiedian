@@ -4,7 +4,7 @@
 
 (function () {
   const iconfontLink = document.createElement('link')
-  iconfontLink.setAttribute('href', '//at.alicdn.com/t/font_b9z5kl8ghfh1714i.css')
+  iconfontLink.setAttribute('href', '//at.alicdn.com/t/font_378571_ma8ezejqjk7yzaor.css')
   iconfontLink.setAttribute('rel', 'stylesheet')
   document.getElementsByTagName('head')[0].appendChild(iconfontLink)
 })()
