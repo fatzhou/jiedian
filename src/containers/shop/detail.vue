@@ -1,14 +1,14 @@
 <template>
   <!--pages/shopdetail/shopdetail.wxml-->
   <div class="shop-detail-wrap"> 
-    <image src="/assets/default.png" class="header-img"></image>
+    <img src="../../assets/default.png" class="header-img" />
     <div class="borrow-back">
-      <image src="/assets/_chongdian.png"></image>
+      <img src="../../assets/_chongdian.png">
       <div class="borrow">
-        <i class="icon-borrow">借</i>可借 <b>{{shopInfo.borrow}}</b>
+        <i class="icon-borrow">借</i>可借<b>{{shopInfo.borrow}}</b>
       </div>
       <div class="back">
-        <i class="icon-return">还</i>已还 <b>{{shopInfo.back}}</b>
+        <i class="icon-return">还</i>已还<b>{{shopInfo.back}}</b>
       </div>
     </div>
     <div class="name-section">
@@ -35,10 +35,10 @@
       <div class="small-section">
         <i class="iconfont icon-iconset0499"></i>
         <div class="content">充电箱位置：{{shopInfo.position}}
-          <span class="state state-on" wx:if="{{shopInfo.online == 1}}">
+          <span class="state state-on" v-if="shopInfo.online == 1">
             设备在线
           </span>
-          <span class="state state-off" wx:else>
+          <span class="state state-off" v-else>
             设备离线
           </span>
         </div>
@@ -46,10 +46,10 @@
     </div>
     
     <div class="btn-group">
-      <div class="bottom-btn bottom-btn__borrow" bindtap="scanBorrow">
+      <div class="bottom-btn bottom-btn__borrow" @click="goBorrowPage">
         借充电宝
       </div>
-      <div class="bottom-btn bottom-btn__buy" bindtap="scanBorrow">
+      <div class="bottom-btn bottom-btn__buy" @click="goBuyPage">
         买充电宝
       </div>
     </div>
@@ -80,39 +80,54 @@ export default {
       this.shopInfo = res.data;
     })
   },
-  methods: {},
+  methods: {
+    goBorrowPage() {
+      this.$router.push({
+        name: 'borrow'
+      });
+    },
+    goBuyPage() {
+      this.$router.push({
+        name: 'buy'
+      });
+    }
+  },
   components: {}
 }
 </script>
 
 <style lang="less" scoped>
-.page{
+/* pages/shopdetail/shopdetail.wxss */
+page{
   height: 100%;
 }
 .shop-detail-wrap{
   background-color: #f4f4f4;
   height: 100%;
+  padding-bottom: 40px;
+  box-sizing: border-box;
+  overflow: auto;
 }
 .header-img{
   width: 100%;
 }
 
 .borrow-back{
-  height: 152rpx;
+  height: 76px;
   background-color: #fff;
   display: flex;
 }
-.borrow-back image {
-  width: 96rpx;
-  height: 96rpx;
-  margin: 28rpx 0 0 80rpx;
+.borrow-back img {
+  width: 48px;
+  height: 48px;
+  margin: 14px 0 0 40px;
 }
 .borrow-back .borrow, .borrow-back .back{
   flex: 1;
-  padding: 0 64rpx;
+  padding: 0 16px;
   box-sizing: border-box;
-  line-height: 152rpx;
-  font-size: 14px;
+  line-height: 76px;
+  font-size: 1.2em;
   text-align: center;
 }
 .borrow-back .borrow{
@@ -128,14 +143,14 @@ export default {
 }
 .icon-borrow, .icon-return{
   display: inline-block;
-  width: 28rpx;
-  height: 28rpx;
+  width: 14px;
+  height: 14px;
   border: 1px solid;
   text-align: center;
-  line-height: 28rpx;
+  line-height: 14px;
   font-style: normal;
-  margin-right: 4px;
-  font-size: 12px;
+  margin-right: 2px;
+  font-size: 1em;
 }
 .icon-borrow{
   border-color: #0085EE;
@@ -149,26 +164,29 @@ export default {
 .borrow-back .borrow:after{
   content: " ";
   position: absolute;
-  top: 28rpx;
+  top: 14px;
   right: 0;
   width: 1px;
-  height: 96rpx;
+  height: 48px;
   border-right: 1px solid #f7f7f7;
 }
 
 
 .name-section{
   margin-top: 8px;
-  display: flex;
+  display: block;
+  overflow: hidden;
   padding: 8px 16px;
   background-color: #fff;
   font-size: 14px;
 }
 .name-section-name{
-  flex: 1;
+  /*flex: 1;*/
 }
 .name-section-contact{
   color: #999999;
+  display: block;
+  float: right;
 }
 
 .detail-section{
@@ -181,11 +199,12 @@ export default {
   padding: 12px 0;
   display: flex;
   position: relative;
-  height: 32rpx;
-  line-height: 32rpx;
+  height: 32px;
+  line-height: 32px;
 }
 .small-section .iconfont{
-  width: 120rpx;
+  display: block;
+  width: 60px;
   text-align: center;
 }
 .small-section .content{
@@ -194,8 +213,8 @@ export default {
 }
 .small-section:after{
   position: absolute;
-  bottom: -3rpx;
-  left: 120rpx;
+  bottom: -3px;
+  left: 60px;
   content: " ";
   height: 1px;
   width: 100%;
@@ -209,26 +228,30 @@ export default {
 .small-section-gothere{
   color: #999999;
   font-size: 14px;
-  margin-right: 32rpx;
+  margin-right: 16px;
+  .iconfont {
+    display: inline;
+  }
 }
 
 .state{
   display: inline-block;
-  height: 32rpx;
-  line-height: 32rpx;
-  padding: 0 8rpx;
-  border-radius: 16rpx;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 16px;
   color: #fff;
-  font-size: 12px;
+  font-size: 1em;
+  padding: 0 12px;
+  float: right;
+  margin-right: 16px;
+  margin-top: 2px;
 }
 .state-on{
   background-color: #FF9800;
 }
 .state-off{
   background-color: #E44545;
-  padding: 2rpx 12rpx;
-  float: right;
-  margin-right: 16px;
+
 }
 
 .btn-group{
@@ -240,12 +263,12 @@ export default {
 
 .bottom-btn{
   flex: 1;
-  height: 80rpx;
+  height: 40px;
   background-color: #0085EE;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 40px;
   color: #fff;
-  font-size: 14px;
+  font-size: 1.2em;
 }
 .bottom-btn__buy{
   background-color: #00A282

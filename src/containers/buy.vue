@@ -1,7 +1,7 @@
 <template>
   <div class="return-wrap">
     <div class="logo">
-      <img src="../assets/scanbuy.jpg" alt="">
+      <img src="http://ob3wg7deo.bkt.clouddn.com/chongdian.png" alt="">
     </div>
     <divider class="divider">使用方法</divider>
     <p class="tips">1.点击<span>扫码购买充电宝</span>，扫描柜机上的二维码支付购买。</p>
