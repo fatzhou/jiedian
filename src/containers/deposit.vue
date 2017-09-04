@@ -10,9 +10,9 @@
       <p class="amount">&yen;{{balance}}</p>
     </div>
     
-    <div class="content">
+<!--     <div class="content">
       <input-cell title="提现金额" placeholder="请输入提现金额" class="input-cell-last" :value.sync="amount"></input-cell>
-    </div>
+    </div> -->
     
     <x-button :active="canClick" @on-click="preDeposit">提现</x-button>
     
@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     canClick() {
-      if (this.amount !== '') {
+      if (this.balance > .001) {
         return true
       }
       return false
@@ -78,21 +78,22 @@ export default {
       })
     },
     preDeposit () {
-      if (isNaN(this.amount)) {
-        alert('请输入合法提现金额')
-        return
-      }
-      if (this.amount > 200) {
-        alert('提现金额不能超过余额')
+      // if (isNaN(this.amount)) {
+      //   alert('请输入合法提现金额')
+      //   return
+      // }
+      if (this.balance < .001) {
+        alert('余额为0，无法提现')
         return 
       }
+      // this.amount = this.
       this.show.confirm = true
     },
     confirmDeposit() {
       if (!this.canClick) {
         return 
       }
-      apiDeposit(this.amount).then((res) => {
+      apiDeposit(this.balance).then((res) => {
         res = res.data
         if (res.errcode === 0) {
           this.$router.push({
