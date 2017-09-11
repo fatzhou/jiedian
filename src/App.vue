@@ -11,6 +11,7 @@
 import { mapState, mapActions } from 'vuex'
 import { Spinner } from 'vux'
 import { wxRegister } from 'utils'
+import './iconfont.css';
 
 export default {
   name: 'app',

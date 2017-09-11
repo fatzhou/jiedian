@@ -41,6 +41,7 @@ export function wxRegister (url) {
       signature: data.signature,
       jsApiList: jsApiList
     }
+    console.log(config);
     wx.config(config)
   })
 }

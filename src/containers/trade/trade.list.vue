@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     getTradeList () {
+      // this.list = list;
       apiTradeList().then((res) => {
         res = res.data
         if (res.errcode === 0 && res.data) {

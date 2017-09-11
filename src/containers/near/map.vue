@@ -9,7 +9,9 @@
       <i class="iconfont icon-liebiao"></i>
     </div>-->
     <map-search @on-click="searchAreas" placeholder="搜索位置查找附近充电宝"></map-search>
-
+    <a href="javascript:;" @click="goRechargePage" class="recharge">
+      <img src="../../assets/recharge.tips.jpg">
+    </a>
     <!-- 地图container -->
     <div id="container"></div>
     <div class="function-area">
@@ -50,6 +52,11 @@ export default {
     this.init();
   },
   methods: {
+    goRechargePage() {
+      this.$router.push({
+        name: "recharge"
+      })
+    },
     searchAreas() {
       wx.openLocation({
           latitude: this.position.lat, // 纬度，浮点数，范围为90 ~ -90
@@ -178,7 +185,19 @@ export default {
   }  
 }
 
+.recharge {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 55px;
+    z-index: 1000;
 
+    img {
+      display: block;
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
 
 
 </style>

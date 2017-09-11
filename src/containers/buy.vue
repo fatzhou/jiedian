@@ -1,18 +1,19 @@
 <template>
   <div class="return-wrap">
     <div class="logo">
-      <img src="../assets/scanbuy.jpg" alt="">
+      <img src="http://ob3wg7deo.bkt.clouddn.com/chongdian.png" alt="">
     </div>
     <divider class="divider">使用方法</divider>
     <p class="tips">1.点击<span>扫码购买充电宝</span>，扫描柜机上的二维码支付购买。</p>
     <p class="tips">2.充电宝售价&yen;80/台</p>
-    <x-button :active="true" class="return-button">扫码购买充电宝</x-button>
+    <x-button :active="true" class="return-button" @on-click="scanBuy">扫码购买充电宝</x-button>
   </div>
 </template>
 
 <script>
 import { Divider } from 'vux'
 import { XButton } from '@/components'
+import { modifyTitle, wxRegister, toString } from 'utils'
 
 export default {
   data() {
@@ -20,10 +21,28 @@ export default {
       "name": "buy"
     };
   },
+  created() {
+    modifyTitle('买充电宝');
+
+    wxRegister(location.href);  
+  },
   computed: {},
   ready() {},
   attached() {},
-  methods: {},
+  methods: {
+    scanBuy () {
+      wx.ready(()=>{
+         wx.scanQRCode({
+          needResult: 1,
+          scanType: ["qrCode","barCode"],
+          success: (res)=> {
+            let result = res.resultStr;
+            // this.handleCode(result);
+          }
+        });       
+      })
+    }
+  },
   components: {
     Divider,
     XButton

@@ -25,16 +25,17 @@ export default {
     wxRegister(location.href);
   },
   mounted() {
-    //获取经纬度
-    wx.getLocation({
-      type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-      success:  (res)=> {
-          this.lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-          this.long = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-          this.getShopList();
-      }
-  });
-
+    wx.ready(()=>{
+      //获取经纬度
+      wx.getLocation({
+        type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+        success:  (res)=> {
+            this.lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+            this.long = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+            this.getShopList();            
+        }
+      });
+    });
   },
   methods: {
     getShopList() {

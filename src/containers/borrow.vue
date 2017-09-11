@@ -20,22 +20,24 @@ export default {
       name: "borrow"
     };
   },
-  activated () {
+  created () {
+    console.log("Page activated");
     modifyTitle('借充电宝');
 
     wxRegister(location.href);      
   },
   methods: {
     scanQrcode () {
-      wx.scanQRCode({
-        needResult: 1,
-        scanType: ["qrCode","barCode"],
-        success: (res)=> {
-          let result = res.resultStr;
-          // this.handleCode(result);
-          alert(result);
-        }
-      });     
+      wx.ready(()=>{
+         wx.scanQRCode({
+          needResult: 1,
+          scanType: ["qrCode","barCode"],
+          success: (res)=> {
+            let result = res.resultStr;
+            // this.handleCode(result);
+          }
+        });       
+      })
     }
   },
   components: {

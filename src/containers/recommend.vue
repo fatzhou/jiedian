@@ -46,6 +46,10 @@
       <div class="title">
         <span class="text">赶快推荐好友使用！</span>
       </div>
+
+      <router-link tag="p" class="check-more" :to="{ name: 'morefriends'}">
+        查看更多明细>
+      </router-link>
     </div>
 
     <div class="share-mask" v-if="showShare" @click="toggleShare"></div>

@@ -78,7 +78,7 @@ const router = new VueRouter({
     {
       path: '/buy',
       name: 'buy',
-      component: r => require.ensure([], () => r(require('@/containers/buy')), 'buy')
+      component: r => require.ensure([], () => r(require('@/containers/buy.vue')), 'buy')
     },
     {
       path: '/my/trade/list',
