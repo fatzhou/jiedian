@@ -64,10 +64,10 @@ export default {
         res = res.data
         if (res.errcode === 0) {
           this.borrowingList = res.data.filter(item => {
-            return item.status === 1
+            return item.status == 1
           })
           this.borrowedList = res.data.filter(item => {
-            return item.status === 2
+            return item.status == 2
           })
         }
       })
