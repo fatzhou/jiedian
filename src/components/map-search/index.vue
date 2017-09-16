@@ -30,18 +30,18 @@ export default {
 </script>
 <style lang="less">
 .search-wrap{
-    padding: 0 16rpx;
-    height: 48rpx;
+    padding: 0 16px;
+    height: 48px;
     background-color: #000;
     display: flex;
   }
   .input-wrap{
     background-color: #fff;
-    // padding: 0 16rpx;
+    // padding: 0 16px;
     flex: 1;
-    margin-top: 8rpx;
-    height: 32rpx;
-    border-radius: 8rpx;
+    margin-top: 8px;
+    height: 32px;
+    border-radius: 8px;
     display: flex;
     overflow: hidden;
   }
@@ -49,18 +49,18 @@ export default {
     flex: 1;
     height: 100%;
     border: 0;
-    font-size: 18rpx;
+    font-size: 18px;
   }
   .icon-sousuo_sousuo{
-    width: 32rpx;
+    width: 32px;
     text-align: center;
-    line-height: 32rpx;
-    font-size: 20rpx;
+    line-height: 32px;
+    font-size: 20px;
   }
   .to-list{
-    width: 32rpx;
+    width: 32px;
     text-align: right;
     color: #fff;
-    line-height: 48rpx;
+    line-height: 48px;
   }
 </style>

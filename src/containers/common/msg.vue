@@ -14,12 +14,26 @@
       </router-link>
     </msg>
 
-    <!-- 提现 -->
+    <!-- 充值 -->
     <msg title="充值成功" description="您的账户已成功充值" v-if="type === 'recharge'">
       <router-link slot="buttons" to='/borrow'>
         <x-button :active="true">扫码使用充电宝</x-button>
       </router-link>
     </msg>
+
+    <!-- 借充电宝 -->
+    <msg title="借充电宝成功" description="您已成功借到充电宝" v-if="type === 'borrow'">
+      <router-link slot="buttons" to='/borrow'>
+        <x-button :active="true">返回</x-button>
+      </router-link>
+    </msg>  
+
+    <!-- 借充电宝 -->
+    <msg title="买充电宝成功" description="恭喜您成功购买到充电宝" v-if="type === 'buy'">
+      <router-link slot="buttons" to='/borrow'>
+        <x-button :active="true">返回</x-button>
+      </router-link>
+    </msg>    
   </div>
 </template>
 <script>

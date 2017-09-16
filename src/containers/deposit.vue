@@ -24,8 +24,8 @@
       <p>3. 提现申请成功后，预计0-5个工作日退回充值账号；</p>
       <p>4. 如有疑问，请点击“帮助中心”了解；</p>
     </div>
-    <confirm title="确认提现" v-model="show.confirm" @on-confirm="confirmDeposit">
-      确认提现{{amount}}元吗？该操作不可撤销
+    <confirm title="您确定要提现吗？" v-model="show.confirm" confirm-text="我要提现" cancel-text="取消" theme="android" content="提现后如需继续使用BY街电，请重新充值押金" @on-confirm="confirmDeposit">
+      
     </confirm>
   </div>
 </template>
@@ -34,7 +34,7 @@
 import { InputCell, XButton } from '@/components'
 import { Confirm, Divider } from 'vux'
 import { modifyTitle } from 'utils'
-import { apiDeposit, apiUserInfo, apiGetBalance } from 'api'
+import { apiDeposit, apiUserInfo, apiGetBalance, apiCheckStatus } from 'api'
 import { mapState, mapActions } from 'vuex'
 
 export default {
@@ -83,27 +83,37 @@ export default {
       //   return
       // }
       if (this.balance < .001) {
-        alert('余额为0，无法提现')
+        self.$vux.toast.text("您的余额为0，无法提现");
         return 
       }
       // this.amount = this.
       this.show.confirm = true
     },
     confirmDeposit() {
+      let self = this
       if (!this.canClick) {
         return 
       }
-      apiDeposit(this.balance).then((res) => {
-        res = res.data
-        if (res.errcode === 0) {
-          this.$router.push({
-            name: 'commonReply',
-            params: {
-              type: 'deposit'
-            }
-          })
+      //查询是否有尚未归还的充电宝
+      apiCheckStatus().then((d)=>{
+        if(d.data.errcode === 0 && d.data.data.status === true) {
+          //仍然有充电宝未归还
+          self.$vux.toast.text("您有尚未归还的充电宝,请归还后重试");
+          return false;
         } else {
-          alert(res.msg)
+          apiDeposit(this.balance).then((res) => {
+            res = res.data
+            if (res.errcode === 0) {
+              this.$router.push({
+                name: 'commonReply',
+                params: {
+                  type: 'deposit'
+                }
+              })
+            } else {
+              self.$vux.toast.text(res.msg);
+            }
+          })          
         }
       })
     }

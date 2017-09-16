@@ -40,8 +40,8 @@ export default {
 <style lang="less">
 .input-cell{
   display: flex;
-  padding: 10rpx 15px 10px 0; 
-  font-size: 14rpx;
+  padding: 10px 15px 10px 0; 
+  font-size: 14px;
   border-bottom: 1px solid #E8E8E8;
   label{
     display: inline-block;

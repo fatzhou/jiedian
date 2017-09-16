@@ -13,6 +13,7 @@
 import { Divider } from 'vux'
 import { XButton } from '@/components'
 import { modifyTitle, wxRegister, toString } from 'utils'
+import { apiGetBalance, apiScanBorrow, apiCheckStatus } from 'api'
 
 export default {
   data() {
@@ -34,10 +35,55 @@ export default {
           scanType: ["qrCode","barCode"],
           success: (res)=> {
             let result = res.resultStr;
-            // this.handleCode(result);
+            this.handleCode(result);
           }
         });       
       })
+    },
+    handleCode(shopid) {
+      let self = this
+      //拉取余额
+      apiGetBalance().then((res) => {
+        console.log(res.data, "余额接口返回");
+        res = res.data
+        if (res.errcode === 0) {
+          if(res.data.amount > 80) {
+            //查询是否在借状态
+            apiCheckStatus().then((d)=>{
+              if(d.data.errcode === 0 && d.data.data.status === true) {
+                //仍然有充电宝未归还
+                self.$vux.toast.text("您有尚未归还的充电宝,请归还后重试");
+                return false;
+              } else {
+                //扫码借
+                apiScanBorrow(shopid).then((res) => {
+                  res = res.data
+                  if (res.errcode === 0) {
+                    //借成功了
+                    this.$router.push({
+                      name: 'commonReply',
+                      params: {
+                        type: 'borrow'
+                      }
+                    })
+                  } else {
+                    self.$vux.toast.text(res.msg);
+                  }
+                })                 
+              }
+            })
+            
+          } else {
+            //余额不足，进入充值页面
+            this.$router.push({
+              name: 'recharge'
+            });
+          }
+        } else {
+          self.$vux.toast.text(res.msg);
+        }
+      })
+
     }
   },
   components: {
@@ -69,7 +115,7 @@ export default {
   .tips{
     margin-top: 16px;
     text-align: center;
-    font-size: 14rpx;
+    font-size: 14px;
     span{
      color: #0085ee;
     }

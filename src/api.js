@@ -34,6 +34,31 @@ export function apiUserInfo () {
 }
 
 /**
+ * 状态查询
+ */
+export function apiCheckStatus() {
+  return get(rootUrl + '/scan_lending')
+}
+
+/**
+ * 扫码借
+ */
+export function apiScanBorrow(shopid) {
+  return get(rootUrl + '/borrow', {
+    shopid: shopid
+  })
+}
+
+/**
+ * 扫码买
+ */
+export function apiScanBuy(shopid) {
+  return get(rootUrl + '/buy', {
+    shopid: shopid
+  })
+}
+
+/**
  * 租借记录
  * http://byjiedian.com/index.php?m=byjie&a=order_list
  */

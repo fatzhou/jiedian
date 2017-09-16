@@ -1,7 +1,7 @@
 <template>
   <div class="nodata-wrap">
     <div class="img-wrap">
-      <image src="http://www.byjiedian.com/static/img/nodata.png" alt="" />
+      <img src="http://www.byjiedian.com/static/img/nodata.png" alt="" />
     </div>
   </div>
 </template>

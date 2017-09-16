@@ -1,9 +1,9 @@
 <template>
   <div class="trade-list-item" :class="'trade-status-'+data.type">
-    <div class="section">{{data.type === '0' ? '充值' : '提现'}}</div>
+    <div class="section">{{data.type === '1' ? '充值' : '提现'}}</div>
     <div class="detail">
       <p class="order-code">订单号：{{data.out_trade_no}}</p>
-      <p class="order-time">{{data.createime}}</p>
+      <p class="order-time">{{data.createtime}}</p>
     </div>
     <div class="amount">{{data.type === '0' ? '+' : '-'}}{{data.total_fee}}元</div>
   </div>
@@ -16,9 +16,9 @@ export default {
       default() {
         return {
           type: 2,
-          code: '198213231',
-          time: '17.01.01 23:01:12',
-          amount: '+100.00'
+          code: '',
+          time: '',
+          amount: ''
         }
       }
     }
@@ -34,35 +34,39 @@ export default {
   display: flex;
   border: solid #e6e6e6;
   border-width: 1px 0 1px 0;
-  .section{
-    width: 60px;
+  .section {
     text-align: center;
     height: 40px;
     line-height: 40px;
-    font-size: 16rpx;
+    font-size: 16px;
     color: #0085EE;
     border-right: 1px solid #E6E6E6;
+    padding: 0 10px;
   }
   .detail{
     flex: 1;
-    padding: 0 8px;
-    line-height: 24rpx;
+    padding-left: 10px;
+    line-height: 24px;
+    overflow: hidden;
   }
   .order-code{
-    font-size: 12rpx;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
     color: #212121;
   }
   .order-time{
-    font-size: 12rpx;
+    font-size: 12px;
     color: #757575;
   }
   .amount{
-    width: 60px;
     text-align: center;
     height:40px;
     line-height: 40px;
-    font-size: 16rpx;
+    font-size: 16px;
+    white-space: nowrap;
+    padding: 0 10px;
   }
 }
 .trade-status-0{
