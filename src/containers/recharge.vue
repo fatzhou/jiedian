@@ -6,7 +6,7 @@
         <!--<i class="iconfont icon-cunqianguan"></i>-->
       </div>
       <p class="msg">需支付押金</p>
-      <p class="amount">&yen;100.00</p>
+      <p class="amount">&yen;{{needRecharge}}</p>
       <div class="reminds">充电宝自带充电线支持
         <i class="iconfont icon-apple"></i>
         <i class="iconfont icon-andriod"></i>
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <x-button :active="true" @on-click="recharge">确认支付</x-button>
+    <x-button :active="this.needRecharge > .001" @on-click="recharge">确认支付</x-button>
     <p class="recharge-tips">点击支付表示已阅读并同意<span>使用条款</span>和<span>充值协议</span></p>
 
     <divider>温馨提示</divider>
@@ -30,19 +30,32 @@
 import { XButton } from '@/components'
 import { Divider } from 'vux'
 import { modifyTitle, wxRegister } from 'utils'
-import { apiRecharge, apiCheckPay } from 'api'
+import { apiRecharge, apiCheckPay, apiGetBalance } from 'api'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
     return {
-      orderNo: ''
+      orderNo: '',
+      amount: '',
+      needRecharge: ''
     };
   },
   created () {
     modifyTitle('充值')
     wxRegister(location.href)
+    this.getBalance();
   },
   methods: {
+    getBalance () {
+      apiGetBalance().then(res => {
+        res = res.data
+        if (res.errcode === 0) {
+          this.amount = parseFloat(res.data.amount)
+          this.needRecharge = this.amount > 80.0 ? 0 : 100 - this.amount;
+        }
+      })
+    },
     recharge () {
       const self = this
       apiRecharge().then((res) => {
