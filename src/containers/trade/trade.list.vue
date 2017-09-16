@@ -72,17 +72,16 @@ export default {
     width: 100%;
     height: 48px;
     line-height: 48px;
-    background-color: #f6f6f6;
+    background-color: #f8f8f8;
     padding: 0 22px;
     font-size: 14rpx;
-    border-bottom: 1px solid #e6e6e6;
     .iconfont{
       float: right;
       font-size: 20rpx;
     }
   }
   .content{
-    margin-top: 52px;
+    margin-top: 56px;
   }
 }
 </style>

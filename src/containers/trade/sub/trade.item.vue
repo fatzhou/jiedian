@@ -32,8 +32,7 @@ export default {
   padding: 16px 0;
   box-sizing: border-box;
   display: flex;
-  border: solid #e6e6e6;
-  border-width: 1px 0 1px 0;
+
   .section {
     text-align: center;
     height: 40px;
