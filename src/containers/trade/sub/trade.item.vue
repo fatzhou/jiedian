@@ -1,6 +1,6 @@
 <template>
   <div class="trade-list-item" :class="'trade-status-'+data.type">
-    <div class="section">{{data.type === '1' ? '充值' : '提现'}}</div>
+    <div class="section">{{data.type === '0' ? '充值' : '提现'}}</div>
     <div class="detail">
       <p class="order-code">订单号：{{data.out_trade_no}}</p>
       <p class="order-time">{{data.createtime}}</p>
@@ -69,12 +69,12 @@ export default {
     padding: 0 10px;
   }
 }
-.trade-status-0{
+.trade-status-1 {
   .section, .amount{
     color: #0085EE;
   }
 }
-.trade-status-1{
+.trade-status-0 {
   .section, .amount{
     color: #FF9800;
   }
