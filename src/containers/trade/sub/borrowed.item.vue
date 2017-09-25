@@ -44,6 +44,7 @@ export default {
 }
 </script>
 <style lang="less">
+@lineHeight: 34px;
 .borrowed-item-wrap.borrow-item-wrap {
   .header{
     .sign{
@@ -53,7 +54,7 @@ export default {
   .content {
     .money {
       .amount {
-        margin-top: 52px;
+        margin-top: 48px;
       }      
     }
   }

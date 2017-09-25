@@ -78,22 +78,6 @@ export default {
       })
     },
     preDeposit () {
-      // if (isNaN(this.amount)) {
-      //   alert('请输入合法提现金额')
-      //   return
-      // }
-      if (this.balance < .001) {
-        self.$vux.toast.text("您的余额为0，无法提现");
-        return 
-      }
-      // this.amount = this.
-      this.show.confirm = true
-    },
-    confirmDeposit() {
-      let self = this
-      if (!this.canClick) {
-        return 
-      }
       //查询是否有尚未归还的充电宝
       apiCheckStatus().then((d)=>{
         if(d.data.errcode === 0 && d.data.data.status === true) {
@@ -101,21 +85,34 @@ export default {
           self.$vux.toast.text("您有尚未归还的充电宝,请归还后重试");
           return false;
         } else {
-          apiDeposit(this.balance).then((res) => {
-            res = res.data
-            if (res.errcode === 0) {
-              this.$router.push({
-                name: 'commonReply',
-                params: {
-                  type: 'deposit'
-                }
-              })
-            } else {
-              self.$vux.toast.text(res.msg);
-            }
-          })          
+          if (this.balance < .001) {
+            self.$vux.toast.text("您的余额为0，无法提现");
+            return 
+          }
+          // this.amount = this.
+          this.show.confirm = true        
         }
       })
+    },
+    confirmDeposit() {
+      let self = this
+      if (!this.canClick) {
+        return 
+      }
+      // apiDeposit(0.01).then((res) => {
+      apiDeposit(this.balance).then((res) => {
+        res = res.data
+        if (res.errcode === 0) {
+          this.$router.push({
+            name: 'commonReply',
+            params: {
+              type: 'deposit'
+            }
+          })
+        } else {
+          self.$vux.toast.text(res.msg);
+        }
+      })          
     }
   },
   components: {

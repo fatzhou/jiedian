@@ -1,17 +1,19 @@
 <template>
   <!--租借记录-->
   <div class="borrow-list-wrap">
-    <tab>
+    <tab style="font-size: 14px;">
       <tab-item selected @on-item-click="onItemClick">进行中</tab-item>
       <tab-item @on-item-click="onItemClick">已完成</tab-item>
     </tab>
     
     <div class="borrowing" v-if="listType">
       <borrowing-item v-for="item in borrowingList" :data="item" :key="item.code" v-if="borrowingList.length"></borrowing-item>
+      <div v-if="borrowingList.length" class="no-more"><div class="no-more-inner">没有更多数据了</div></div>
        <no-data v-if="!borrowingList.length"></no-data> 
     </div>
     <div class="borrowed" v-if="!listType && !nodata">
       <borrowed-item v-for="item in borrowedList" :data="item" :key="item.code" v-if="borrowedList.length"></borrowed-item>
+      <div v-if="borrowedList.length" class="no-more"><div class="no-more-inner">没有更多数据了</div></div>
       <no-data v-if="!borrowedList.length"></no-data>
     </div>
   </div>
@@ -76,4 +78,31 @@ export default {
 }
 </script>
 <style lang="less">
+  .no-more {
+      color: #bbb;
+      font-size: 10px;
+      line-height: 4;
+      height: 40px;
+      text-align: center;
+      position: relative;
+
+      .no-more-inner {
+        background: #f4f4f4;
+        width: 90px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 100;
+      }
+
+      &:after {
+        content: "";
+        height: 1px;
+        position: absolute;
+        width: 180px;
+        left: 50%;
+        top: 20px;
+        margin-left: -90px;
+        background: #dbdbdb;
+      }
+  }
 </style>

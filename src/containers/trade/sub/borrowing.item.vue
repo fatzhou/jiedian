@@ -36,6 +36,7 @@ export default {
 }
 </script>
 <style lang="less">
+@lineHeight: 34px;
 .borrow-item-wrap{
   margin-top: 8px;
   background: #fff;
@@ -47,22 +48,21 @@ export default {
     .code{
       flex: 1;
       color: #757575;
-      font-size: 14px;
-      line-height: 45px;
+      font-size: 10px;
+      line-height: @lineHeight;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
     .sign{
-      width: 40px;
-      height: 21px;
-      margin-top: 12px;
+      padding: 0 8px;
+      height: 16px;
+      line-height: 16px;
+      margin-top: 9px;
       border-radius: 2px;
       background-color: #0085ee;
-      color: #fff;
-      text-align: center;
-      line-height: 21px;
-      font-size: 12px;
+      color: #fff;      
+      font-size: 10px;
     }
   }
   .content{
@@ -73,15 +73,16 @@ export default {
     }
     .amount{
       color: #0085ee;
-      font-size: 24px;
+      font-size: 18px;
       line-height: 1;
-      margin-top: 20px;
+      margin-top: 14px;
     }
     small{
       font-size: 12px;
     }
     .tips{
-      font-size: 12px;
+      font-size: 10px;
+      height: 22px;
       line-height: 22px;
       color: #999;
     }
@@ -89,10 +90,10 @@ export default {
       flex: 1;
     }
     .borrow-info {
-      height: 40px;
-      line-height: 40px;
+      height: @lineHeight;
+      line-height: @lineHeight;
       box-sizing: border-box;
-      font-size: 14px;
+      font-size: 10px;
       display: flex;
       padding-right: 16px;
       border-bottom: 1px solid #f5f5f5;
