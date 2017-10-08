@@ -37,12 +37,7 @@ export default {
           needResult: 1,
           scanType: ["qrCode","barCode"],
           success: (res)=> {
-            let result = res.resultStr;
-            let index = res.resultStr.indexOf('shopid=');
-            if(index > -1) {
-              result = res.resultStr.slice(index + 'shopid='.length);
-              console.log(result);
-            }
+            let result = encodeURIComponent(res.resultStr);
 
             apiCheckStatus().then((d)=>{
               if(d.data.errcode === 0 && d.data.data.status === true) {
@@ -109,7 +104,7 @@ export default {
     text-align: center;
     margin-top: 32px;
     img{
-      width: 350px;
+      width: 100%;
     }
   }
   .divider{

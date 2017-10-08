@@ -92,4 +92,51 @@ a{
   opacity: 0;
   transform: translate3d(-100%, 0, 0);
 }
+.router-view .vux-tab .vux-tab-item.vux-tab-selected {
+  border-bottom: 1rpx solid #0085ee;
+}
+
+  /*
+    vux
+  */
+ .vux-x-dialog, .router-view {
+    .weui-dialog__title, .weui-dialog__btn{
+      font-size: 16px;
+    }
+    .weui-dialog__ft{
+      line-height: 16px;
+    }
+
+    .weui-skin_android .weui-dialog__hd {
+      font-size: 14px;
+      padding: 20px 16px 10px;
+      .weui-dialog__title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+      }
+    }
+
+    .weui-skin_android .weui-dialog__bd{
+      font-size: 13px;
+      line-height: 1.5;
+      padding: 0 16px;
+      color: #777;
+    }
+    .vux-divider{
+      margin: 0 auto;
+      margin-top: 8px;
+      &:after, &:before {
+        width: 37%;
+      }
+    }
+    .weui-dialog__ft {
+      margin-top: 4px;
+    }
+    .weui-dialog__ft .weui-dialog__btn {
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+ }
 </style>

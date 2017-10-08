@@ -24,7 +24,7 @@
       <p>2. 充电宝借出后，15分钟后开始扣费，1小时收费1元，每天最高收费8元。</p>
     </div>
 
-    <confirm title="您暂时不需要充值" v-model="showConfirm" confirm-text="我了解了"  theme="android" content="当您押金不足80元时，需补存至100元押金" @on-confirm="closeConfirm">
+    <confirm title="您暂时不需要充值" v-model="showConfirm" confirm-text="确定"  theme="android" content="当您押金不足80元时，需补存至100元押金" @on-confirm="closeConfirm">
       
     </confirm>
 
@@ -166,7 +166,7 @@ export default {
         res = res.data
         if (res.errcode === 0) {
           this.amount = parseFloat(res.data.amount)
-          this.needRecharge = this.amount > 80.0 ? 0 : 100 - this.amount;
+          this.needRecharge = this.amount > 80.0 ? 0 : (100.0 - this.amount).toFixed(2);
         }
       })
     },
@@ -295,9 +295,7 @@ export default {
     vux
   */
   .vux-divider{
-    margin-top: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
+    margin-top: 8px auto 0;
   }
 }
 

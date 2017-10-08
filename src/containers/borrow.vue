@@ -29,17 +29,14 @@ export default {
   },
   methods: {
     scanQrcode () {
-      wx.ready(()=>{
+      console.log("您点击了扫码借");
+
+        let self = this;
          wx.scanQRCode({
           needResult: 1,
           scanType: ["qrCode","barCode"],
           success: (res)=> {
-            let result = res.resultStr;
-            let index = res.resultStr.indexOf('shopid=');
-            if(index > -1) {
-              result = res.resultStr.slice(index + 'shopid='.length);
-              console.log(result);
-            }
+            let result = encodeURIComponent(res.resultStr);
             //查询是否在借状态
             apiCheckStatus().then((d)=>{
               if(d.data.errcode === 0 && d.data.data.status === true) {
@@ -52,7 +49,7 @@ export default {
             })
           }
         });       
-      })
+
     },
     handleCode(shopid) {
       let self = this
@@ -63,9 +60,9 @@ export default {
         if (res.errcode === 0) {
           if(res.data.amount > 80) {
               //扫码借
-              apiScanBorrow(shopid).then((res) => {
-                res = res.data
-                if (res.errcode === 0) {
+              apiScanBorrow(shopid).then((d) => {
+                let data = d.data
+                if (data.errcode === 0) {
                   //借成功了
                   this.$router.push({
                     name: 'commonReply',
@@ -74,7 +71,7 @@ export default {
                     }
                   })
                 } else {
-                  self.$vux.toast.text(res.msg);
+                  self.$vux.toast.text(data.msg);
                 }
               })                 
           } else {
@@ -107,7 +104,7 @@ export default {
     text-align: center;
     margin-top: 32px;
     img{
-      width: 350px;
+      width: 100%;
     }
   }
   .divider{
@@ -127,5 +124,6 @@ export default {
   .borrow-button{
     font-size: 16px;
   }
+
 }
 </style>

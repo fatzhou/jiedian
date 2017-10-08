@@ -78,6 +78,11 @@ export default {
 }
 </script>
 <style lang="less">
+  .borrow-list-wrap {
+    height: 100%;
+    position: relative;
+  }
+
   .no-more {
       color: #bbb;
       font-size: 10px;
