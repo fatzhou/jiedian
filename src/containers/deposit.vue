@@ -99,16 +99,19 @@ export default {
       if (!this.canClick) {
         return 
       }
-      // apiDeposit(0.01).then((res) => {
-      apiDeposit(this.balance).then((res) => {
+      apiDeposit(0.01).then((res) => {
+        console.log("提现0.01")
+      // apiDeposit(this.balance).then((res) => {
         res = res.data
         if (res.errcode === 0) {
-          this.$router.push({
-            name: 'commonReply',
-            params: {
-              type: 'deposit'
-            }
-          })
+          // this.$router.push({
+          //   name: 'commonReply',
+          //   params: {
+          //     type: 'deposit'
+          //   }
+          // })
+          //跳转至充值成功页
+          this.$router.push('depositresult');
         } else {
           self.$vux.toast.text(res.msg);
         }

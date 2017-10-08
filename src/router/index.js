@@ -54,6 +54,11 @@ const router = new VueRouter({
       path:'/deposit',
       name: 'deposit',
       component: r => require.ensure([], () => r(require('@/containers/deposit.vue')), 'deposit')
+    },    
+    {
+      path:'/depositresult',
+      name: 'depositresult',
+      component: r => require.ensure([], () => r(require('@/containers/depositresult.vue')), 'depositresult')
     },
     {
       path: '/my',

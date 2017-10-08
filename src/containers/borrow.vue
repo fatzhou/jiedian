@@ -35,6 +35,11 @@ export default {
           scanType: ["qrCode","barCode"],
           success: (res)=> {
             let result = res.resultStr;
+            let index = res.resultStr.indexOf('shopid=');
+            if(index > -1) {
+              result = res.resultStr.slice(index + 'shopid='.length);
+              console.log(result);
+            }
             //查询是否在借状态
             apiCheckStatus().then((d)=>{
               if(d.data.errcode === 0 && d.data.data.status === true) {

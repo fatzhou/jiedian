@@ -197,12 +197,20 @@ export default {
     },
     checkPay () {
       apiCheckPay(this.orderNo).then((res) => {
-        this.$router.push({
-          name: 'commonReply',
-          params: {
-            type: 'recharge'
-          }
-        })
+        var data = res.data
+        if(data.errcode === 0) {
+          this.amount = 0;
+          //弹出toast
+          self.$vux.toast.text('恭喜您充值成功');
+        } else {
+          self.$vux.toast.text(data.msg || "充值失败，请联系客服");
+        }
+        // this.$router.push({
+        //   name: 'commonReply',
+        //   params: {
+        //     type: 'recharge'
+        //   }
+        // })
       })
     }
   },
