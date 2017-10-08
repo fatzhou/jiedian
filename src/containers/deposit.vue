@@ -14,7 +14,7 @@
       <input-cell title="提现金额" placeholder="请输入提现金额" class="input-cell-last" :value.sync="amount"></input-cell>
     </div> -->
     
-    <x-button :active="canClick" @on-click="preDeposit">提现</x-button>
+    <x-button :active="true" :class="{'disable-click': !canClick}" @on-click="preDeposit">提现</x-button>
     
     <divider>温馨提示</divider>
 
@@ -94,13 +94,25 @@ export default {
         }
       })
     },
+    getTime(time) {
+      time = time * 1000 || Date.now();
+      let now = new Date(time);
+      let year = now.getFullYear(),
+          month = ('00' + (now.getMonth() + 1)).slice(-2),
+          day = ('00' + (now.getDate())).slice(-2),
+          hour =  ('00' + (now.getHours())).slice(-2),
+          minute =  ('00' + (now.getMinutes())).slice(-2),
+          second =  ('00' + (now.getSeconds())).slice(-2);
+      return year + '年' + month + '月' + day + '日' + ' ' + [hour,minute, second].join(':');
+    },
     confirmDeposit() {
       let self = this
       if (!this.canClick) {
         return 
       }
-      apiDeposit(0.01).then((res) => {
-        console.log("提现0.01")
+      // this.amount = .01;
+      apiDeposit(this.amount).then((res) => {
+        console.log("提现0.01", res)
       // apiDeposit(this.balance).then((res) => {
         res = res.data
         if (res.errcode === 0) {
@@ -111,7 +123,14 @@ export default {
           //   }
           // })
           //跳转至充值成功页
-          this.$router.push('depositresult');
+          this.$router.push({
+            name: 'depositresult', 
+            params: {
+              amount: this.amount,
+              orderno: res.data.out_trade_no,
+              time: this.getTime(res.data.create_time)
+            }
+          });
         } else {
           self.$vux.toast.text(res.msg);
         }
@@ -143,6 +162,9 @@ export default {
     .iconfont{
       font-size: 48rpx;
     }
+  }
+  .disable-click {
+    color: hsla(0,0%,100%,.4);
   }
   .msg{
     margin-top: 8px;

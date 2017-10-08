@@ -1,125 +1,179 @@
 <template>
- <div class="deposit-wrap">
-    <div class="header">
-      <div class="big-sign">
-        <image src="http://7xpceu.com1.z0.glb.clouddn.com/TIXIAN.png" alt="" />
-        <!--<i class="iconfont icon-jinbi"></i>-->
-      </div>
-      <div class="msg">可提现余额</div>
-      <div class="amount">￥{{balance}}</div>
-    </div>
-    
-    <div class="desc-area">
-      <button class="deposit-btn" bindtap="doDeposit">提现</button>
-      
-      <div class="tip-title">
-        <div class="border"></div>
-        <div class="tip-title-word">温馨提示</div>
-      </div>
-
-      <div class="tips">
-        <div class="text">1. 可提现余额是租借充电宝支付的押金和使用扣费后剩余押金的信息；</div>
-        <div class="text">2. 租借充电宝过程中无法提现；</div>
-        <div class="text">3. 提现申请成功后，预计0-5个工作日退回充值账号；</div>
-        <div class="text">4. 如有疑问，请点击“帮助中心”了解；</div>
-      </div>    
-    </div>
-  </div>
+	<div class="deposit-result">
+		<div class="top-tips">
+			<img class="top-tips-bg" src="http://7xpceu.com1.z0.glb.clouddn.com/deposit_bg.png" />
+			<div class="amount">￥{{amount}}</div>
+			<p class="tip-first">提现申请已提交</p>
+			<p class="tip-second">预计0-5个工作日退回充值账号</p>
+		</div>
+		<div class="deposit-order">提现单号：{{orderno}}</div>
+		<div class="deposit-result-area">
+			<img class="image-area" src="http://7xpceu.com1.z0.glb.clouddn.com/process.png" class="image-area">
+			<div class="word-area">
+				<div class="word-process">
+					<div class="word-process-first active">提交成功{{amount}}元</div>
+					<div class="word-process-second">{{time}}</div>
+				</div>			
+				<div class="word-process">
+					<div class="word-process-first active">处理中</div>
+					<div class="word-process-second">预计0-5个工作日退回充值账号</div>
+				</div>			
+				<div class="word-process">
+					<div class="word-process-first">提现成功</div>
+					<div class="word-process-second">申请提现成功，请去交易明细查看</div>
+				</div>
+			</div>
+		</div>
+		<div class="button-area">
+			<div class="deposit-button" @click="goback">完成</div>
+		</div>
+	</div>
 </template>
 
 <script type="text/javascript">
-	
+	import { modifyTitle } from 'utils'
+
+	export default {
+		name: 'depositresult',
+		data() {
+			return {
+				amount: '0.00',
+				orderno: 'UKeww9239jjdsj',
+				time: '2017年1月1日 17:12:10'
+			}
+		},
+		created() {
+			modifyTitle('提现成功');
+			if(this.$route.parans) {
+				this.amount = this.$route.params.amount
+				this.orderno = this.$route.params.orderno		
+				this.time = this.$route.params.time		
+			}
+		},
+		methods: {
+			goback() {
+				this.$router.go(-1);
+			}
+		}
+	}
 </script>
 
 <style lang="less" scoped>
-/* deposit.wxss */
-	.deposit-wrap {
-	  background: #f4f4f4;
-	  min-height: 100vh;
-	}
+.top-tips {
+	position: relative;
+	height: 169px;
+}
+
+.top-tips-bg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+
+.amount {
+	line-height: 45px;
+	font-size: 32px;
+	color: #0085EE;
+	top: 40px;
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	z-index: 10;
+}
+
+.tip-first {
+	font-size: 14px;
+	line-height: 20px;
+	color: #212121;
+	top: 88px;
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	z-index: 10;
+}
+
+.tip-second {
+	font-size: 10px;
+	line-height: 2.25;
+	top: 108px;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	z-index: 10;
+	color: #999;
+}
+
+.deposit-order {
+	font-size: 12px;
+	color: #616161;
+	margin: 0 15px;
+	line-height: 40px;
+	height: 40px;
+	border-bottom: 1rpx solid #ececec;
+}
+
+/* 提现详情 */
+    .deposit-result-area {
+        overflow: hidden;
+        margin: 0 22px;
+        padding-top: 10px;
+        border-bottom: 1px solid #ececec;
+
+        .image-area {
+            float: left;
+            width: 15px;
+            height: 127px;
+        }
+
+        .word-area {
+            float: left;
+            margin-left: 10px;
+            margin-top: -4px;
+        }
+    }
 
 
-	.header {
-	    width: 100%;
-	    background-color: #fff;
-	    overflow: hidden;
-	}
+    .word-process {
+        padding-bottom: 18px;
+        &:last-child {
+            padding-bottom: 10px;
+        }
+    }
 
-	.big-sign {
-	    margin: 64rpx auto 0;
-	    text-align: center;
-	    width: 150rpx;
-	    height: 150rpx;
-	}
+    .word-process-first {
+        color: #212121;
+        font-size: 12px;
+        line-height: 21px;
+        height: 21px;
+    }
 
-	.big-sign image {
-	  width: 100%;
-	  height: 100%;
-	}
+    .active {
+        color: #0085ee;
+    }
 
-	.header .msg {
-	    margin-top: 40rpx;
-	    text-align: center;
-	    color: #666;
-	    font-size: .8em;
-	    line-height: 1.75;
-	}
+    .word-process-second {
+        font-size: 10px;
+        height: 16px;
+        line-height: 16px;
+        color: #616161;
+    }
 
-	.header .amount {
-	    margin-top: 24rpx;
-	    text-align: center;
-	    color: #0085EE;
-	    font-size: 2em;
-	    padding-bottom: 80rpx;
-	}
+    /* 提现详情结束 */
 
-	.desc-area {
-	  background: #f4f4f4;
-	  padding: 45rpx 30rpx 0;
-	}
 
-	.deposit-btn {
-	  background: #0085EE;
-	  color: #61b2f3;
-	  margin-bottom: 20rpx;
-	}
-
-	.tip-title {
-	  color: #a6a6a6;
-	  position: relative;
-	  text-align: center;
-	}
-
-	.tip-title .tip-title-word {
-	  position:relative;
-	  font-size:.8em;
-	  line-height:1.75;
-	  display:inline-block;
-	  padding:20rpx 40rpx;
-	  z-index:9999;
-	  background: #f4f4f4;
-	}
-
-	.tip-title .border {
-	  position: absolute;
-	  bottom: 44rpx;
-	  z-index: 9999;
-	  width: 100%;
-	  height: 1px;
-	  background: #a6a6a6;
-	  z-index: 1;
-	}
-
-	.tips {
-	  color: #a6a6a6;
-	  font-size: 24rpx;
-	  line-height: 1.5;
-
-	}
-
-	.tips .text {
-	  padding: 8rpx 0;  
-	}
-
+.deposit-button {
+	background: #0085EE;
+	color: #fff;
+	border-radius: 4px;
+	font-size: 16px;
+	margin: 0 15px;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	margin-top: 10px;
+}
 	
 </style>

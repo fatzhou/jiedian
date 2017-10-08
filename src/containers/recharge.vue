@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <x-button active="true" @on-click="recharge">确认支付</x-button>
+    <x-button active="true" :class="{'disable-click':!needRecharge}" @on-click="recharge">确认支付</x-button>
     <p class="recharge-tips">点击支付表示已阅读并同意<span @click="changeShowUseProtocol">使用条款</span>和<span @click="changeShowRechargeProtocol">充值协议</span></p>
 
     <divider>温馨提示</divider>
@@ -241,6 +241,9 @@ export default {
       font-size: 48rpx;
     }
   }
+  .disable-click {
+    color: hsla(0,0%,100%,.4);
+  }
   .msg{
     margin-top: 8px;
     text-align: center;
@@ -327,6 +330,8 @@ export default {
   box-sizing: content-box;
   overflow: visible;
 }
+
+
 
 .main-content .title {
   position: absolute;
