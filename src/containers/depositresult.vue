@@ -44,7 +44,7 @@
 		},
 		created() {
 			modifyTitle('提现成功');
-			if(this.$route.parans) {
+			if(this.$route.params) {
 				this.amount = this.$route.params.amount
 				this.orderno = this.$route.params.orderno		
 				this.time = this.$route.params.time		

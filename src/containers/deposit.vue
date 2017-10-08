@@ -112,7 +112,7 @@ export default {
       }
       // this.amount = .01;
       apiDeposit(this.amount).then((res) => {
-        console.log("提现0.01", res)
+        console.log("提现0.01", this.amount, res)
       // apiDeposit(this.balance).then((res) => {
         res = res.data
         if (res.errcode === 0) {

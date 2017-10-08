@@ -44,6 +44,11 @@ const router = new VueRouter({
       path:'/borrow',
       name: 'borrow',
       component: r => require.ensure([], () => r(require('@/containers/borrow.vue')), 'borrow')
+    },    
+    {
+      path:'/guide',
+      name: 'guide',
+      component: r => require.ensure([], () => r(require('@/containers/guide.vue')), 'guide')
     },
     {
       path:'/coupon',
