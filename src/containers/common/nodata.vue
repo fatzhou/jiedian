@@ -8,8 +8,11 @@
 
 <style lang="less">
 .nodata-wrap{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   .img-wrap{
-    margin: 60px auto 0;
     width: 120px;
     height: 193px;
     img{

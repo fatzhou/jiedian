@@ -38,6 +38,11 @@ export default {
           scanType: ["qrCode","barCode"],
           success: (res)=> {
             let result = res.resultStr;
+                    let index = result.indexOf('shopid=');
+        if(index > -1) {
+          result = result.slice(index + 'shopid='.length);
+        }
+
             apiCheckStatus().then((d)=>{
               if(d.data.errcode === 0 && d.data.data.status === true) {
                 //仍然有充电宝未归还
@@ -103,7 +108,7 @@ export default {
     text-align: center;
     margin-top: 32px;
     img{
-      width: 350px;
+      width: 100%;
     }
   }
   .divider{

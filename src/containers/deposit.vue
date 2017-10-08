@@ -165,23 +165,5 @@ export default {
       margin-top: 4px;
     }
   }
-  /*
-    vux
-  */
-  .weui-dialog__title, .weui-dialog__btn{
-    font-size: 16rpx;
-  }
-  .weui-dialog__ft{
-    line-height: 1.2rem;
-  }
-  .weui-dialog__bd{
-    font-size: 16rpx;
-    padding: 0.2em 1.6em;
-  }
-  .vux-divider{
-    margin-top: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
 }
 </style>
