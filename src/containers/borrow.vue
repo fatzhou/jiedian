@@ -6,6 +6,9 @@
     <divider class="divider">使用方法</divider>
     <p class="tips">点击<span>扫码借充电宝</span>，然后扫描柜机上的二维码</p>
     <x-button :active="true" class="borrow-button"  @on-click="scanQrcode">扫码借充电宝</x-button>
+    <confirm title="您有充电宝未归还" v-model="backfirst" confirm-text="我了解了" theme="android" content="请先归还充电宝后重新扫码借充电宝" @on-confirm="closeBackfirstConfirm">
+      
+    </confirm>
   </div>
 </template>
 
@@ -18,7 +21,12 @@ import { apiGetBalance, apiScanBorrow, apiCheckStatus } from 'api'
 export default {
   data() {
     return {
-      name: "borrow"
+      name: "borrow",
+      data() {
+        return {
+          backfirst: false
+        }
+      }
     };
   },
   created () {
@@ -28,6 +36,9 @@ export default {
     wxRegister(location.href);      
   },
   methods: {
+    closeBackfirstConfirm() {
+      this.backfirst = false;
+    },
     scanQrcode () {
       console.log("您点击了扫码借");
 
@@ -41,7 +52,8 @@ export default {
             apiCheckStatus().then((d)=>{
               if(d.data.errcode === 0 && d.data.data.status === true) {
                 //仍然有充电宝未归还
-                self.$vux.toast.text("您有尚未归还的充电宝,请归还后重试");
+                // self.$vux.toast.text("您有尚未归还的充电宝,请归还后重试");
+                this.backfirst = true;
                 return false;
               } else {
                 this.handleCode(result);

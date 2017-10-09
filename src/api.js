@@ -53,7 +53,7 @@ export function apiScanBorrow(shopid) {
  * 扫码买
  */
 export function apiScanBuy(shopid) {
-  return get(rootUrl + '/buy', {
+  return get(rootUrl + '/buy_imei', {
     shopid: shopid
   })
 }
@@ -137,6 +137,13 @@ export function apiGetBalance () {
  */
 export function apiFriendList () {
   return get(rootUrl + '/get_agent_trade')
+}
+
+/**
+ * 推荐提现
+ */
+export function apiAgentDraw () {
+  return get(rootUrl + '/agent_draw')
 }
 
 /**
