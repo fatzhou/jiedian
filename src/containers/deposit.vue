@@ -25,7 +25,7 @@
       <p>4. 如有疑问，请点击“帮助中心”了解；</p>
     </div>
     <confirm title="您确定要提现吗？" v-model="show.confirm" confirm-text="我要提现" cancel-text="取消" theme="android" content="提现后如需继续使用BY街电，请重新充值押金" @on-confirm="confirmDeposit">
-      
+        <confirm title="您有充电宝未归还" v-model="backfirst" confirm-text="我了解了" theme="android" content="请先归还在借充电宝后再提现" @on-confirm="closeBackfirstConfirm"> </confirm>  
     </confirm>
   </div>
 </template>
@@ -41,6 +41,7 @@ export default {
   data() {
     return {
       balance: '',
+      backfirst: false,
       amount: '',
       show: {
         confirm: false
@@ -61,6 +62,9 @@ export default {
     },
   },
   methods: {
+    closeBackfirstConfirm() {
+      this.backfirst = false
+    },
     getBalance () {
       apiGetBalance().then(res => {
         res = res.data
@@ -82,7 +86,8 @@ export default {
       apiCheckStatus().then((d)=>{
         if(d.data.errcode === 0 && d.data.data.status === true) {
           //仍然有充电宝未归还
-          self.$vux.toast.text("您有尚未归还的充电宝,请归还后重试");
+          // self.$vux.toast.text("您有尚未归还的充电宝,请归还后重试");
+          this.backfirst = true
           return false;
         } else {
           if (this.balance < .001) {

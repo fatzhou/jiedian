@@ -7,11 +7,9 @@
         <span>累计(人) {{friendsNum}}</span>
         <span>累计 &yen;{{friendsMoney}}</span>
       </div>
-      <router-link :to="{ name: 'deposit'}">
-        <x-button :active="true">提现</x-button>
-      </router-link>
+        <x-button :active="true" @on-click="deposit">提现</x-button>
     </header>
-    <div class="section">
+    <div class="section" v-if="friendList.length > 0">
       <div class="content">
         <ul class="friends">
           <li class="friend" v-for="friend in friendList" :key="friend.id">
@@ -29,20 +27,27 @@
         </ul>
       </div>
     </div>
+
+    <confirm title="您确定要提现吗？" v-model="depositconfirm" confirm-text="我要提现" cancel-text="取消" theme="android" content="您的推荐提现将以微信红包形式发放给您" @on-confirm="confirmDeposit">
+
+    <confirm title="恭喜您提现成功" v-model="successdeposit" confirm-text="我了解了" cancel-text="取消" theme="android" content="系统已收到您的提现请求，将在5个工作日内以微信红包形式发放给您" @on-confirm="confirmSuccessDeposit">
   </div>
 </template>
 <script>
+import { Confirm, Divider } from 'vux'
 import { XButton } from '@/components'
 import { modifyTitle, wxRegister } from 'utils'
-import { apiFriendList } from 'api'
+import { apiAgentDraw, apiUserInfo, apiGetBalance, apiCheckStatus, apiFriendList } from 'api'
 
 export default {
   data () {
     return {
       balance: '',
       friendList: [],
+      depositconfirm: false,
       friendsMoney: 0,
-      friendsNum: ''
+      friendsNum: '',
+      successdeposit: false
     }
   },
   created () {
@@ -50,6 +55,30 @@ export default {
     this.getFriendList()
   },
   methods: {
+    deposit() {
+      console.log("您点击了提现")
+      if(this.balance < .01) {
+        self.$vux.toast.text('您目前无推荐奖励，无需提现');
+      } else {
+        this.depositconfirm = true
+      }
+    },
+    confirmSuccessDeposit() {
+      this.successdeposit = false
+    },
+    confirmDeposit() {
+      console.log("确实要提现")
+      let self = this
+      this.depositconfirm = false
+      //查询余额
+      apiAgentDraw().then((res) => {
+        res = res.data
+        if (res.errcode === 0) {
+           this.successdeposit = true
+           this.balance = 0
+        }
+      })
+    },
     getFriendList () {
       apiFriendList().then(res => {
         res = res.data
@@ -70,7 +99,8 @@ export default {
     },
   },
   components: {
-    XButton
+    XButton,
+    Confirm
   }
 }
 </script>
