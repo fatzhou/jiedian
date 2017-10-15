@@ -14,7 +14,7 @@
 
     <confirm title="充电宝不足" v-model="lesscharger" confirm-text="我了解了" theme="android" content="当前充电宝桩的充电宝已全部借完或买走，请等待其它用户归还" @on-confirm="closeLesschargerConfirm"> </confirm>   
 
-    <confirm title="恭喜您借充电宝成功" v-model="successtrade" confirm-text="我了解了" theme="android" content="您使用完充电宝后，请及时归还，系统将在1分钟内停止扣费" @on-confirm="closeSuccesstradeConfirm"> </confirm>   
+    <confirm title="恭喜您借充电宝成功" v-model="successtrade" confirm-text="我了解了" theme="android" content="请尽快取走您的充电宝，系统将在15分钟后开始计费" @on-confirm="closeSuccesstradeConfirm"> </confirm>   
   </div>
 </template>
 
@@ -55,16 +55,21 @@ export default {
     },
     scanQrcode () {    
         let self = this;
+      wx.ready(()=>{
          wx.scanQRCode({
           needResult: 1,
           scanType: ["qrCode","barCode"],
           desc: "test",
           success: (res)=> {
+            // res.resultStr = "http://weixin.qq.com/q/023JSj5zNSdM410000M03H";
+            // res.resultStr = "http://weixin.qq.co/q/02SrkW5QNSdM410000M034";
             let result = encodeURIComponent(res.resultStr);
+            console.log(result)
             apiGetBalance().then(res => {
               res = res.data
-              if (res.errcode === 0) {
+              if (res.retCode === 0 || res.errcode === 0) {
                 this.balance = res.data.amount
+                console.log(this.balance, this.balance > 80.0)
                 if(this.balance > 80.0) {
                   //查询是否在借状态
                   apiCheckStatus().then((d)=>{
@@ -81,18 +86,21 @@ export default {
                 } else {
                   this.lessbalance = true
                 }
+              } else {
+                console.log(res);
               }
             })
           }
         });       
-
+      })
     },
     handleCode(shopid) {
       let self = this
       //拉取余额
       apiScanBorrow(shopid).then((d) => {
         let data = d.data
-        if (data.errcode === 0) {
+        if (data.errcode === 0 || data.retCode === 0) {
+          console.log("借出成功")
           //借成功了
           this.successtrade = true;
           // this.$router.push({
@@ -130,7 +138,7 @@ export default {
       display: block;
       margin: 0 auto;
       position: relative;
-      left: -8px;
+      left: -4px;
     }
   }
   .divider{

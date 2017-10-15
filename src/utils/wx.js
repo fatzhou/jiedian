@@ -30,6 +30,7 @@ export function modifyTitle (title) {
  * 微信注册url
  */
 export function wxRegister (url) {
+  console.log(url, base64encode(url));
   const json = apiGetSign(base64encode(url))
   json.then((res) => {
     const data = res.data
