@@ -15,6 +15,8 @@
 </template>
 <script>
 import { apiTuijianQrcode } from 'api'
+import { modifyTitle, wxRegister } from 'utils'
+
 export default {
   data () {
     return {
@@ -24,16 +26,37 @@ export default {
     }
   },
   created () {
-    this.getQrcode()
+    modifyTitle('分享好友挣提成');
+    wxRegister(location.href)
+    this.getQrcode();
+    this.share();
   },
   methods: {
     getQrcode () {
-      const openid = this.$route.query.id
+      const openid = this.$route.query.openid;
+      console.log('传入了openid:' + openid)
       apiTuijianQrcode(openid).then(res => {
         res = res.data
         if (res.errcode === 0) {
           this.imgUrl = res.data.url
         }
+      })
+    },
+    share () {
+      const self = this
+      console.log("调用了share")
+      wx.ready(function() {
+        const params = {
+          title: '您的好友邀请您加入BY街电',
+          desc: '免费注册BY街电，方便使用共享充电宝',
+          link: `http://www.byjiedian.com/index.php/byjie/index/qrcode?id=${self.openid}`,
+          imgUrl: 'http://www.byjiedian.com/static/img/logo.jpg'
+        }
+        wx.onMenuShareTimeline(params)
+        wx.onMenuShareAppMessage(params)
+        wx.onMenuShareQQ(params)
+        wx.onMenuShareWeibo(params)
+        wx.onMenuShareQZone(params)
       })
     }
   }

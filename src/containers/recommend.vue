@@ -1,10 +1,10 @@
 <template lang="html">
   <div class="recommend-wrap">
     <div class="header">
-      <img src="../assets/recommend.png" alt="">
-      <div class="board" @click="toggleShare">
-        <!--<p class="tips">成功邀请好友，可获得<strong>10%</strong>的租借金额</p>-->
-        <!--<x-button :active="true" @on-click="toggleShare">马上邀请好友，赚现金</x-button>-->
+      <img src="../assets/recommend.png" @click="goQrcode" alt="">
+      <div class="board" @click="goQrcode">
+        <!-- <p class="tips">成功邀请好友，可获得<strong>10%</strong>的租借金额</p> -->
+        <!-- <x-button :active="true" @on-click="toggleShare">马上邀请好友，赚现金</x-button> -->
       </div>
     </div>
 
@@ -75,9 +75,18 @@ export default {
     wxRegister(location.href)
     this.getOpenid()
     this.getFriendList()
-    this.share()
+    // this.share()
   },
   methods: {
+    goQrcode() {
+      console.log("跳转二维码页面：" + this.openid)
+      this.$router.push({
+        name: 'qrcode',
+        query: {
+          openid: this.openid
+        }
+      });
+    },
     toggleShare() {
       this.showShare = !this.showShare
     },
@@ -85,7 +94,8 @@ export default {
       apiUserInfo().then(res => {
         res = res.data
         if (res.errcode === 0) {
-          this.openid = res.data.openid
+          console.log("接口返回openid:" + res.data.openid);
+          this.openid = res.data.openid;
         }
       })
     },
@@ -111,6 +121,7 @@ export default {
     },
     share () {
       const self = this
+      console.log("调用了share")
       wx.ready(function() {
         const params = {
           title: '您的好友邀请您加入BY街电',
