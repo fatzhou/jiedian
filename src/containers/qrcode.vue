@@ -25,15 +25,16 @@ export default {
       openid: ''
     }
   },
-  created () {
-    modifyTitle('分享好友挣提成');
+  mounted () {
+    modifyTitle('一起加入BY街电吧');
+    this.openid = this.$route.query.id;
     wxRegister(location.href)
     this.getQrcode();
     this.share();
   },
   methods: {
     getQrcode () {
-      const openid = this.$route.query.openid;
+      const openid = this.openid;
       console.log('传入了openid:' + openid)
       apiTuijianQrcode(openid).then(res => {
         res = res.data
