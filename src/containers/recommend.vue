@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="recommend-wrap">
     <div class="header">
-      <img src="../assets/recommend.png" @click="toggleShare" alt="">
-      <div class="board" @click="toggleShare">
+      <img src="../assets/recommend.png" @click="goQrcode" alt="">
+      <div class="board" @click="goQrcode">
 <!--         <p class="tips">成功邀请好友，可获得<strong>10%</strong>的租借金额</p>
         <x-button :active="true" @on-click="toggleShare">马上邀请好友，赚现金</x-button> -->
       </div>
@@ -82,7 +82,7 @@ export default {
       this.$router.push({
         name: 'qrcode',
         query: {
-          openid: this.openid
+          id: this.openid
         }
       });
     },

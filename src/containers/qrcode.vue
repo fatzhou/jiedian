@@ -28,6 +28,7 @@ export default {
   mounted () {
     modifyTitle('一起加入BY街电吧');
     this.openid = this.$route.query.id;
+    console.log('传入了openid' + this.openid)
     wxRegister(location.href)
     this.getQrcode();
     this.share();
