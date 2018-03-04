@@ -1,7 +1,7 @@
 <template>
   <div class="qrcode-wrap">
     <div class="content">
-      <div class="title">扫一扫，关注<span style="color: #00B1E4">BY街电</span></div>
+      <div class="title">扫一扫，关注<span style="color: #00B1E4">爽电</span></div>
       <div class="qrcode-img">
         <img :src="imgUrl" alt="" class="qrcode">
         <i class="small-logo"></i>
@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted () {
-    modifyTitle('一起加入BY街电吧');
+    modifyTitle('一起加入爽电吧');
     this.openid = this.$route.query.id;
     console.log('传入了openid' + this.openid)
     wxRegister(location.href)
@@ -49,8 +49,8 @@ export default {
       console.log("调用了share")
       wx.ready(function() {
         const params = {
-          title: '您的好友邀请您加入BY街电',
-          desc: '免费注册BY街电，方便使用共享充电宝',
+          title: '您的好友邀请您加入爽电',
+          desc: '免费注册爽电，方便使用共享充电宝',
           link: `http://www.byjiedian.com/index.php/byjie/index/qrcode?id=${self.openid}`,
           imgUrl: 'http://www.byjiedian.com/static/img/logo.jpg'
         }

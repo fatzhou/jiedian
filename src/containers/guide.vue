@@ -106,7 +106,7 @@
     </div>
     <div class="footer">
       <p class="tel">客服电话：<a href="tel:4000805985" class="tel">400-0805-985</a></p>
-      <p class="copyright">感谢您对BY街电的理解和支持</p>
+      <p class="copyright">感谢您对爽电的理解和支持</p>
     </div>
   </div>
 </template>

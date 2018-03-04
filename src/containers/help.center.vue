@@ -4,7 +4,7 @@
       热门问题
     </div>
     <group>
-      <cell title="1.BY街电支持哪些接口类型手机充电?" is-link :link="links[0]"></cell>
+      <cell title="1.爽电支持哪些接口类型手机充电?" is-link :link="links[0]"></cell>
       <cell title="2.如何租借充电宝?" is-link :link="links[1]"></cell>
       <cell title="3.是否支持一个人借多个充电宝? " is-link :link="links[2]"></cell>
       <cell title="4.如何归还充电宝?" is-link :link="links[3]"></cell>

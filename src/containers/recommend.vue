@@ -13,8 +13,8 @@
         <span class="text">活动细则</span>
       </div>
       <div class="content">
-        <p>1. 推荐好友扫一扫，关注“BY街电”</p>
-        <p>2. 通过推荐路径关注BY街电公共号的所有好友，可以提成10%租借消费金额</p>
+        <p>1. 推荐好友扫一扫，关注“爽电”</p>
+        <p>2. 通过推荐路径关注爽电公共号的所有好友，可以提成10%租借消费金额</p>
       </div>
     </div>
 
@@ -125,8 +125,8 @@ export default {
       wx.ready(function() {
         console.log("微信已经ready了");
         const params = {
-          title: '您的好友邀请您加入BY街电',
-          desc: '免费注册BY街电，方便使用共享充电宝',
+          title: '您的好友邀请您加入爽电',
+          desc: '免费注册爽电，方便使用共享充电宝',
           link: `http://www.byjiedian.com/index.php/byjie/index/qrcode?id=${self.openid}`,
           imgUrl: 'http://www.byjiedian.com/static/img/logo.jpg'
         }

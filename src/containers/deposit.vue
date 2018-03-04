@@ -24,7 +24,7 @@
       <p>3. 提现申请成功后，预计0-5个工作日退回充值账号；</p>
       <p>4. 如有疑问，请点击“帮助中心”了解；</p>
     </div>
-    <confirm title="您确定要提现吗？" v-model="show.confirm" confirm-text="我要提现" cancel-text="取消" theme="android" content="提现后如需继续使用BY街电，请重新充值押金" @on-confirm="confirmDeposit">
+    <confirm title="您确定要提现吗？" v-model="show.confirm" confirm-text="我要提现" cancel-text="取消" theme="android" content="提现后如需继续使用爽电，请重新充值押金" @on-confirm="confirmDeposit">
         <confirm title="您有充电宝未归还" v-model="backfirst" confirm-text="我了解了" theme="android" content="请先归还在借充电宝后再提现" @on-confirm="closeBackfirstConfirm"> </confirm>  
     </confirm>
   </div>
